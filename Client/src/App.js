@@ -1,11 +1,17 @@
 import './App.css';
+import SideBar from './components/sidebar/SideBar.component';
+import {
+  Routes, Route
+} from "react-router-dom";
+import HomePage from './pages/homepage/HomePage';
 
 function App() {
   return (
     <div className="App">
-      <h1 className="text-3xl font-bold underline text-red-500">
-        Hello world!
-      </h1>
+      <SideBar />
+      <Routes>
+        <Route path='/' Component={HomePage}></Route>
+      </Routes>
     </div>
   );
 }
