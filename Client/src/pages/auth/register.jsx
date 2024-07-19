@@ -2,7 +2,6 @@ import React from "react";
 import 'tailwindcss/tailwind.css';
 import { Link } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './auth.css';
 
@@ -36,14 +35,14 @@ const Register = () => {
                             </div>
 
                             <button
-                                className="w-full py-2 px-4 bg-black border border-[#6a6a6a] border-[0.5px] text-white rounded-3xl shadow-md flex items-center justify-center hover:border-white hover:border-[1px] hover:ring-1 hover:ring-white transition-all"
+                                className="w-full py-2 px-4 bg-black border border-[#6a6a6a]  text-white rounded-3xl shadow-md flex items-center justify-center hover:border-white hover:border-[1px] hover:ring-1 hover:ring-white transition-all"
                                 type="submit"
                             >
                                 <img src="assets/images/google.png" alt="Google" className="w-5 h-5 mr-2" />
                                 <span className="flex-1 text-center">Sign up with Google</span>
                             </button>
                             <button
-                                className="w-full py-2 px-4 bg-black border border-[#6a6a6a] border-[0.5px] text-white rounded-3xl shadow-md flex items-center justify-center mt-2 hover:border-white hover:border-[1px] hover:ring-1 hover:ring-white transition-all"
+                                className="w-full py-2 px-4 bg-black border border-[#6a6a6a]  text-white rounded-3xl shadow-md flex items-center justify-center mt-2 hover:border-white hover:border-[1px] hover:ring-1 hover:ring-white transition-all"
                                 type="submit"
                             >
                                 <img src="assets/images/fb.png" alt="Facebook" className="w-5 h-5 mr-2" />

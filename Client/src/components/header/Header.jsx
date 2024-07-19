@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import SearchInput from "../searchInput/index";
-import BellIcon from '../Icons/BellIcon'
+import BellIcon from "../Icons/BellIcon";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -20,13 +20,16 @@ const Header = () => {
           </div>
           <SearchInput></SearchInput>
         </div>
-       
-       
+
         <div className="flex gap-2">
-        <BellIcon></BellIcon>
+          <div className="mt-3 hover:bg-gray-600 rounded-full">
+            <BellIcon></BellIcon>
+          </div>
           <Link to={"/register"}>
             <div
-              style={{ background: "linear-gradient(to bottom, #888888, #000000)" }}
+              style={{
+                background: "linear-gradient(to bottom, #888888, #000000)",
+              }}
               className="p-4 rounded-full text-white"
             >
               Register
