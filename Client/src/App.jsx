@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import HomePage from './pages/homepage/HomePage';
 import SearchPage from './pages/searchpage/SearchPage';
+import Artist from './components/artist/Artist';
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
       <SideBar />
       <Routes>
         <Route path='/' Component={HomePage}></Route>
+        <Route path='/artist' Component={Artist}></Route>
+        <Route path='/search' Component={SearchPage}></Route>
       </Routes>
       <SearchPage></SearchPage>
     </div>
