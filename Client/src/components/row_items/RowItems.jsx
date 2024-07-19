@@ -17,6 +17,8 @@ const RowItems = ({ title, data }) => {
               image={item.image}
               name={item.name}
               title={item.title}
+              
+              
             />
           ) : (
             <RoundCard

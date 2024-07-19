@@ -5,7 +5,7 @@ const BellIcon = ({ className }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className={`w-6 h-6 ${className}`}
+      className={`w-10 h-10 ${className}`}
       fill="currentColor"
       viewBox="0 0 20 20"
       stroke="currentColor"
