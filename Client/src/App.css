@@ -1,38 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --black-color: #191414;
+  --green-color: #1db954;
+  --dark-gray: #121212;
+  --gray: #404040;
+  --dark-color: #242424;
+  --light-gray: #b3b3b3;
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Đối với trình duyệt Webkit (Chrome, Safari) */
+}
+
+body {
+  overflow: hidden;
+  -ms-overflow-style: none; /* Đối với Internet Explorer và Edge */
+  scrollbar-width: none; /* Đối với Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 .App {
-  text-align: center;
+  background: var(--black-color);
+  display: grid;
+  grid-column: 3;
+  /* grid-template-columns: 20% 30% 50%;; */
+  padding: 8px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.rowItemTitle {
   color: white;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.rowItemSubTitle {
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 10px;
 }
