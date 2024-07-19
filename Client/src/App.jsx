@@ -12,6 +12,8 @@ import Login from './pages/auth/login';
 import Register from './pages/auth/register';
 import ForgotPass from './pages/auth/forgotPass';
 
+import Content from './pages/content/Content';
+import InfoClient from './pages/info-client/Info-client';
 function App() {
   return (
     <div className="App max-h-dvh bg-black">
@@ -29,6 +31,8 @@ function App() {
               <Route path='/login' Component={Login}></Route>
               <Route path='/register' Component={Register}></Route>
               <Route path='/forgot' Component={ForgotPass}></Route>
+              <Route path='/content' Component={Content}></Route>
+              <Route path='/info' Component={InfoClient}></Route>
             </Routes>
           </div>
         </div>
