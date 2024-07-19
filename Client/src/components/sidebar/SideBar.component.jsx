@@ -5,6 +5,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import QueueMusicIcon from "@mui/icons-material/QueueMusic";
 import LanguageIcon from '@mui/icons-material/Language';
 import Logo from "../../assets/images/logo.jpg"
+
 const SideBar = () => {
   return (
     <div className="flex flex-col gap-4">
@@ -26,7 +27,7 @@ const SideBar = () => {
             <div className="text-white font-bold">Home</div>
           </div>
         </Link>
-        <Link to={"/"}>
+        <Link to={"/search"}>
           <div className="flex items-center gap-2">
             <SearchIcon
               fontSize="large"

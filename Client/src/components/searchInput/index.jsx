@@ -6,7 +6,7 @@ const SearchInput = () => {
 
   return (
     <div
-      className={`flex items-center rounded-full p-2 transition-colors duration-300 border ${
+      className={`flex items-center w-64 rounded-full p-2 transition-colors duration-300 border ${
         isFocused
           ? "bg-white text-black border-white"
           : "bg-gray-700 text-white hover:bg-gray-500 border-transparent"
@@ -15,7 +15,7 @@ const SearchInput = () => {
       <FaSearch className="ml-2" />
       <input
         type="text"
-        placeholder="Tìm kiếm nội dung..."
+        placeholder="What do you want to play?..."
         className={`bg-transparent border-none outline-none ml-2 w-full ${
           isFocused ? 'placeholder-black' : 'placeholder-gray-400'
         }`}
