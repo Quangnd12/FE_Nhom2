@@ -1,7 +1,7 @@
 import React from "react";
 import RowItems from "../../components/row_items/RowItems";
 import Footer from "../../components/footer/Footer";
-import { Link } from "react-router-dom";
+
 
 const data = {
   artist: [
@@ -125,12 +125,10 @@ const data = {
 const HomePage = () => {
   return (
     <div>
-       <Link to={"/artist"}>
       <RowItems
         title={"Popular artist"}
         data={data.artist}
       />
-      </Link>
       <RowItems
         title={"Popular albums"}
         data={data.album}

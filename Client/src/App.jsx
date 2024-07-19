@@ -1,12 +1,16 @@
-import "./App.css";
-import { Routes, Route } from "react-router-dom";
-import HomePage from "./pages/homepage/HomePage";
-import Login from "./pages/auth/login";
-import Register from "./pages/auth/register";
-import ForgotPass from "./pages/auth/forgotPass";
-import SearchPage from "./pages/searchpage/SearchPage";
-import Header from "./components/header/Header";
-import SideBar from "./components/sidebar/SideBar.component";
+import './App.css';
+import SideBar from './components/sidebar/SideBar.component';
+import {
+  Routes, Route
+} from "react-router-dom";
+import HomePage from './pages/homepage/HomePage';
+import Header from './components/header/Header';
+import SearchPage from './pages/searchpage/SearchPage';
+import Artist from './pages/artist/Artist'
+
+import Login from './pages/auth/login';
+import Register from './pages/auth/register';
+import ForgotPass from './pages/auth/forgotPass';
 
 function App() {
   return (
@@ -22,26 +26,12 @@ function App() {
             style={{ background: "linear-gradient(to bottom, #888888, #000000 95%)", height: "620px" }}
           >
             <Routes>
-              <Route
-                path="/"
-                Component={HomePage}
-              ></Route>
-              <Route
-                path="/"
-                Component={HomePage}
-              ></Route>
-              <Route
-                path="/login"
-                Component={Login}
-              ></Route>
-              <Route
-                path="/register"
-                Component={Register}
-              ></Route>
-              <Route
-                path="/forgot"
-                Component={ForgotPass}
-              ></Route>
+              <Route path='/' Component={HomePage}></Route>
+              <Route path='/search' Component={SearchPage}></Route>
+              <Route path='/artist' Component={Artist}></Route>
+              <Route path='/login' Component={Login}></Route>
+              <Route path='/register' Component={Register}></Route>
+              <Route path='/forgot' Component={ForgotPass}></Route>
             </Routes>
             <SearchPage></SearchPage>
           </div>
