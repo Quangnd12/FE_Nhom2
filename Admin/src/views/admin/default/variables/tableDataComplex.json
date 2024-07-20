@@ -1,26 +1,26 @@
 [
   {
-    "name":"Horizon UI PRO",
-    "status": "Approved",
-    "date": "18 Apr 2022",
-    "progress": 75.5  
+    "artist": "Sơn tùng M-TP",
+    "listen": "6k",
+    "avatar": "https://genk.mediacdn.vn/139269124445442048/2024/6/1/photo-1-17168606131071257137350-1717278776106716631383.jpg",
+    "followers": "460k"
   },
   {
-    "name":"Horizon UI Free",
-    "status": "Disable",
-    "date": "18 Apr 2022",
-    "progress": 25.5  
+    "artist": "Hiếu Thứ Hai",
+    "listen": "3,23k",
+    "avatar": "https://i.pinimg.com/736x/f2/34/93/f23493fb538192bd8a00252c95f18026.jpg",
+    "followers": "250k"
   },
   {
-    "name":"Marketplace",
-    "status": "Error",
-    "date": "20 May 2021",
-    "progress": 90  
+    "artist": "Grey D",
+    "listen": "5,67k",
+    "avatar": "https://cdn.tuoitre.vn/thumb_w/480/471584752817336320/2023/12/13/grey-d-1-17024582479101189434626.jpeg",
+    "followers": "160k"
   },
   {
-    "name":"Weekly Updates",
-    "status": "Approved",
-    "date": "12 Jul 2021",
-    "progress": 50.5  
+    "artist": "Lou Hoàng",
+    "listen": "4k",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbH7FIiD7X9BgoxQ1k3ixJ8duSQxfBfyoWIg&s",
+    "followers": "45k"
   }
 ]
