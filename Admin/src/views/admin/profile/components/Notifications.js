@@ -18,7 +18,7 @@ export default function Notifications(props) {
           fontSize="2xl"
           mb="4px"
         >
-          Notifications
+          Thông báo
         </Text>
         <Menu />
       </Flex>
@@ -28,14 +28,14 @@ export default function Notifications(props) {
         fontSize="sm"
         mb="20px"
         id="1"
-        label="Item update notifications"
+        label="Thông báo bài hát mới"
       />
       <SwitchField
         reversed={true}
         fontSize="sm"
         mb="20px"
         id="2"
-        label="Item comment notifications"
+        label="Thông báo buổi hòa nhạc"
       />
       <SwitchField
         isChecked={true}
@@ -43,7 +43,7 @@ export default function Notifications(props) {
         fontSize="sm"
         mb="20px"
         id="3"
-        label="Buyer review notifications"
+        label="Thông báo hợp tác"
       />
       <SwitchField
         isChecked={true}
@@ -51,21 +51,21 @@ export default function Notifications(props) {
         fontSize="sm"
         mb="20px"
         id="4"
-        label="Rating reminders notifications"
+        label="Thông báo phát hành album"
       />
       <SwitchField
         reversed={true}
         fontSize="sm"
         mb="20px"
         id="5"
-        label="Meetups near you notifications"
+        label="Thông báo phỏng vấn và xuất hiện trên truyền thông"
       />
       <SwitchField
         reversed={true}
         fontSize="sm"
         mb="20px"
         id="6"
-        label="Company news notifications"
+        label="Cập nhật hàng hóa"
       />
       <SwitchField
         isChecked={true}
@@ -73,14 +73,14 @@ export default function Notifications(props) {
         fontSize="sm"
         mb="20px"
         id="7"
-        label="New launches and projects"
+        label="Gặp gỡ người hâm mộ"
       />
       <SwitchField
         reversed={true}
         fontSize="sm"
         mb="20px"
         id="8"
-        label="Monthly product changes"
+        label="Hậu trường"
       />
       <SwitchField
         isChecked={true}
@@ -88,13 +88,13 @@ export default function Notifications(props) {
         fontSize="sm"
         mb="20px"
         id="9"
-        label="Subscribe to newsletter"
+        label="Đăng ký nhận bản tin"
       />
       <SwitchField
         reversed={true}
         fontSize="sm"
         id="10"
-        label="Email me when someone follows me"
+        label="Email khi có ai đó nhắc đến tôi"
       />
     </Card>
   );

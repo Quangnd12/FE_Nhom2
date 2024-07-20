@@ -18,10 +18,11 @@ import { MdOutlineCloudDone } from "react-icons/md";
 export default function Banner(props) {
   const { used, total } = props;
   // Chakra Color Mode
-  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
-  const brandColor = useColorModeValue("brand.500", "white");
-  const textColorSecondary = "gray.400";
-  const box = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
+  const textColorPrimary = useColorModeValue("black", "black");
+  const brandColor = useColorModeValue("black", "white");
+  const textColorSecondary = "gray.500";
+  const box = useColorModeValue("secondaryGray.300", "blackAlpha.100");
+
   return (
     <Card mb={{ base: "0px", lg: "20px" }} align='center'>
       <Flex w='100%'>
@@ -37,14 +38,14 @@ export default function Banner(props) {
         bg={box}
       />
       <Text color={textColorPrimary} fontWeight='bold' fontSize='2xl' mt='10px'>
-        Your storage
+        Bộ Nhớ
       </Text>
       <Text
         color={textColorSecondary}
         fontSize='md'
         maxW={{ base: "100%", xl: "80%", "3xl": "60%" }}
         mx='auto'>
-        Supervise your drive space in the easiest way
+        Dữ Liệu Tải Nhạc Lên
       </Text>
       <Box w='100%' mt='auto'>
         <Flex w='100%' justify='space-between' mb='10px'>
@@ -57,7 +58,7 @@ export default function Banner(props) {
         </Flex>
         <Progress
           align='start'
-          colorScheme='brandScheme'
+          colorScheme='blackAlpha'
           value={(used / total) * 100}
           w='100%'
         />
