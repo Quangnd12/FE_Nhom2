@@ -220,7 +220,6 @@ const Container = styled.div`
       flex-direction: column;
       margin-bottom: 5rem;
       .row {
-      justify-items: center;
         padding: 0.5rem 1rem;
         display: grid;
         grid-template-columns: 0.3fr 3.1fr 2fr 0.1fr;
