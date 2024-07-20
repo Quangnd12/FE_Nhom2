@@ -1,6 +1,6 @@
 import React from 'react';
 import ContentCard from '../../components/cards/Content';
-import Footer from '../../components/footer/Footer';
+
 
 const Content = () => {
   // Sample array of items
