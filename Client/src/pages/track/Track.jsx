@@ -1,14 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import Sidebar from "./Sidebar";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Body from "./Body";
 import { useStateProvider } from "../../utils/StateProvider";
 import { reducerCases } from "../../utils/Constants";
 
-export default function Spotify() {
+export default function Track() {
   const [{ token }, dispatch] = useStateProvider();
   const [navBackground, setNavBackground] = useState(false);
   const [headerBackground, setHeaderBackground] = useState(false);
@@ -63,7 +62,6 @@ export default function Spotify() {
   return (
     <Container>
       <div className="spotify__body">
-        <Sidebar />
         <div className="body" ref={bodyRef} onScroll={bodyScrolled}>
           <Navbar navBackground={navBackground} />
           <div className="body__contents">
@@ -71,9 +69,7 @@ export default function Spotify() {
           </div>
         </div>
       </div>
-      <div className="spotify__footer">
-        <Footer />
-      </div>
+      <Footer />
     </Container>
   );
 }
@@ -86,7 +82,7 @@ const Container = styled.div`
   grid-template-rows: 85vh 15vh;
   .spotify__body {
     display: grid;
-    grid-template-columns: 15vw 85vw;
+    grid-template-columns: 1fr;
     height: 100%;
     width: 100%;
     background: linear-gradient(transparent, rgba(0, 0, 0, 1));

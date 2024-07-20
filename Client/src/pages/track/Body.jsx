@@ -24,7 +24,46 @@ export default function Body({ headerBackground }) {
           context_uri: "spotify:album:4yP0hdKOZPNshxUOjY0cZj",
           track_number: 1,
         },
-        // Add more tracks as needed
+        {
+          id: "7qiZfU4dY1lWllzX7mPBI3",
+          name: "Watermelon Sugar",
+          artists: ["Harry Styles"],
+          image: "https://i.scdn.co/image/ab67616d00001e0277fdcfda6535601aff081b6a",
+          duration: 174000,
+          album: "Fine Line",
+          context_uri: "spotify:album:2kRbbXj7AxXaqgL3JEr2F4",
+          track_number: 2,
+        },
+        {
+          id: "6LOfOUpXBkO59RjG9MTp3Q",
+          name: "Good 4 U",
+          artists: ["Olivia Rodrigo"],
+          image: "https://i.scdn.co/image/ab67616d00001e02a91c10fe9472d9bd89802e5a",
+          duration: 200000,
+          album: "SOUR",
+          context_uri: "spotify:album:1j9FefMwJszmJ5XzH7AfqH",
+          track_number: 3,
+        },
+        {
+          id: "1Xl8W4xZef4qjZISYbMQhb",
+          name: "Levitating",
+          artists: ["Dua Lipa"],
+          image: "https://i.scdn.co/image/ab67616d00001e024bc66095f8a70bc4e6593f4f",
+          duration: 203000,
+          album: "Future Nostalgia",
+          context_uri: "spotify:album:2M9THNSkB2AcdI8AWk6K9R",
+          track_number: 4,
+        },
+        {
+          id: "4aX14Hzt9JXnZwH6bPsw6y",
+          name: "Save Your Tears",
+          artists: ["The Weeknd"],
+          image: "https://i.scdn.co/image/ab67616d00001e028863bc11d2aa12b54f5aeb36",
+          duration: 215000,
+          album: "After Hours",
+          context_uri: "spotify:album:4aT5fZpZetXzJgwSgzRjb9",
+          track_number: 5,
+        },
       ],
     };
 
@@ -181,7 +220,6 @@ const Container = styled.div`
       flex-direction: column;
       margin-bottom: 5rem;
       .row {
-      justify-items: center;
         padding: 0.5rem 1rem;
         display: grid;
         grid-template-columns: 0.3fr 3.1fr 2fr 0.1fr;
