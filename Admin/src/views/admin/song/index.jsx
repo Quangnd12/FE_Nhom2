@@ -6,10 +6,10 @@ import ListSong from "./components/list";
 import Card from "components/card/Card.js";
 // Assets
 
-import tableDataTopCreators from "views/admin/marketplace/variables/tableDataTopCreators.json";
-import { tableColumnsTopCreators } from "views/admin/marketplace/variables/tableColumnsTopCreators";
+import tableDataTopCreators from './variables/tableDataTopCreators.json'
+import { tableColumnsTopCreators } from "./variables/tableColumnsTopCreators";
 
-const Marketplace = () => {
+const Song = () => {
   return (
     <Box pt={{ base: "180px", md: "80px", xl: "80px" }}>
       {/* Main Fields */}
@@ -33,4 +33,4 @@ const Marketplace = () => {
   );
 }
 
-export default Marketplace;
+export default Song;
