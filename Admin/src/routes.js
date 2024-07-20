@@ -1,21 +1,15 @@
 import React from "react";
 import { Icon } from "@chakra-ui/react";
-import {
-  MdPlaylistPlay,
-  MdPerson,
-  MdHome,
-  MdCategory,
-  MdLibraryMusic,
-  MdMusicNote,
-  MdMic
-} from "react-icons/md";
+import { MdPlaylistPlay, MdPerson, MdHome, MdCategory, MdLibraryMusic, MdMusicNote, MdMic } from "react-icons/md";
 
 // Admin Imports
 import MainDashboard from "views/admin/default";
-import Marketplace from "views/admin/marketplace";
+import Song from "views/admin/song";
 import Profile from "views/admin/profile";
 import DataTables from "views/admin/dataTables";
-import AddSong from "views/admin/marketplace/components/add";
+import AddSong from "views/admin/song/components/add";
+import EditSong from "views/admin/song/components/edit";
+
 
 // Auth Imports
 import SignInCentered from "views/auth/signIn";
@@ -32,17 +26,24 @@ const routes = [
     name: "Song",
     layout: "/admin",
     path: "/song",
-    icon: (
-      <Icon
-        as={MdMusicNote}
-        width='20px'
-        height='20px'
-        color='inherit'
-      />
-    ),
-    component: Marketplace,
-    secondary: true,
+    icon: ( <Icon as={MdMusicNote} width='20px' height='20px' color='inherit'/> ),
+    component: Song,
   },
+  {
+    layout: '/admin',
+    name: "Add Song",
+    path: "/addSong",
+    component: AddSong,
+    displayInSidebar: false,
+  },
+   {
+    layout: '/admin',
+    name: "Edit Song",
+    path: "/editSong",
+    component: EditSong,
+    displayInSidebar: false,
+  },
+  
   {
     name: "Artist",
     layout: "/admin",

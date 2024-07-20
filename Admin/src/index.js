@@ -10,6 +10,8 @@ import theme from 'theme/theme';
 import { ThemeEditorProvider } from '@hypertheme-editor/chakra-ui';
 import './index.css';
 
+
+
 ReactDOM.render(
 	<ChakraProvider theme={theme}>
 		<React.StrictMode>
