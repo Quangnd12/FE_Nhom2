@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
 import QueueMusicIcon from "@mui/icons-material/QueueMusic";
-import LanguageIcon from '@mui/icons-material/Language';
-import Logo from "../../assets/images/logo.jpg"
+import LanguageIcon from "@mui/icons-material/Language";
+import Logo from "../../assets/images/logo.jpg";
 
 const SideBar = () => {
   return (
@@ -38,7 +38,7 @@ const SideBar = () => {
         </Link>
       </div>
       <div className="flex flex-col gap-4 bg-[var(--gray)] rounded-md bg-black">
-        <Link to={"/"}>
+        <Link to={"/track"}>
           <div className="flex items-center gap-2 p-2">
             <QueueMusicIcon
               fontSize="large"
@@ -77,7 +77,10 @@ const SideBar = () => {
           <li className="rowItemSubTitle text-white">Accessibility</li>
           <li className="rowItemSubTitle text-white">Cookies</li>
         </ul>
-        <div className="flex items-center rounded-full w-max p-2 text-white font-bold hover:scale-105 cursor-pointer transition-all" style={{border:"white solid 1px"}}>
+        <div
+          className="flex items-center rounded-full w-max p-2 text-white font-bold hover:scale-105 cursor-pointer transition-all"
+          style={{ border: "white solid 1px" }}
+        >
           <LanguageIcon />
           English
         </div>
