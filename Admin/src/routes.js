@@ -10,6 +10,12 @@ import Profile from "views/admin/profile";
 import AddSong from "views/admin/song/components/add";
 import EditSong from "views/admin/song/components/edit";
 import Genre, { AddGenre, EditGenre, DeleteGenre } from "./views/admin/genre";
+import Albums from "views/admin/albums";
+import AddAlbum from "views/admin/albums/components/add";
+import EditAlbum from "views/admin/albums/components/edit";
+import Artist from "views/admin/artist";
+import AddArtist from "views/admin/artist/components/add";
+import EditArtist from "views/admin/artist/components/edit";
 
 // Auth Imports
 import SignInCentered from "views/auth/signIn";
