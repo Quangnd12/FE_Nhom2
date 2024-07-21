@@ -1,11 +1,12 @@
 import "./App.css";
-// import SideBar from './components/sidebar/SideBar.component';
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/homepage/HomePage";
 import Login from "./pages/auth/login";
 import Register from "./pages/auth/register";
 import ForgotPass from "./pages/auth/forgotPass";
 import SearchPage from "./pages/searchpage/SearchPage";
+import Header from "./components/header/Header";
+import SideBar from "./components/sidebar/SideBar.component";
 
 function App() {
   return (
