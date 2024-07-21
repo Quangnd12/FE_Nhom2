@@ -80,7 +80,7 @@ function ListSong(props) {
                     <Table variant="simple" color="gray.500">
                         <Thead>
                             <Tr>
-                                <Th>STT</Th>
+                                <Th>No</Th>
                                 <Th>Title</Th>
                                 <Th>Audio</Th>
                                 <Th>Duration</Th>
@@ -96,9 +96,9 @@ function ListSong(props) {
                                 <Td>Em của ngày hôm qua</Td>
                                 <Td><Icon as={MdPlayArrow} width='20px' height='20px' color='inherit' /></Td>
                                 <Td>3:30</Td>
-                                <Td>1x</Td>
+                                <Td>108-120 BPM</Td>
                                 <Td>256kbps</Td>
-                                <Td>Nhạc hiện đại</Td>
+                                <Td>Pop</Td>
                                 <Td>
                                     <Link to='/admin/editSong' className='text-blue-600 hover:text-blue-800'><Icon as={MdEdit} width='20px' height='20px' color='inherit' mr='20px' /></Link>
                                     <button onClick={handleOpenModal} className="text-red-600 hover:text-red-800">
@@ -113,9 +113,9 @@ function ListSong(props) {
                                 <Td>Em của ngày hôm qua</Td>
                                 <Td><Icon as={MdPlayArrow} width='20px' height='20px' color='inherit' /></Td>
                                 <Td>3:30</Td>
-                                <Td>1x</Td>
+                                <Td>108-120 BPM</Td>
                                 <Td>256kbps</Td>
-                                <Td>Nhạc hiện đại</Td>
+                                <Td>Pop</Td>
                                 <Td>
                                     <Link to='/admin/editSong' className='text-blue-600 hover:text-blue-800'><Icon as={MdEdit} width='20px' height='20px' color='inherit' mr='20px' /></Link>
                                     <button onClick={handleOpenModal} className="text-red-600 hover:text-red-800">
@@ -130,9 +130,9 @@ function ListSong(props) {
                                 <Td>Em của ngày hôm qua</Td>
                                 <Td><Icon as={MdPlayArrow} width='20px' height='20px' color='inherit' /></Td>
                                 <Td>3:30</Td>
-                                <Td>1x</Td>
+                                <Td>108-120 BPM</Td>
                                 <Td>256kbps</Td>
-                                <Td>Nhạc hiện đại</Td>
+                                <Td>Pop</Td>
                                 <Td>
                                     <Link to='/admin/editSong' className='text-blue-600 hover:text-blue-800'><Icon as={MdEdit} width='20px' height='20px' color='inherit' mr='20px' /></Link>
                                     <button onClick={handleOpenModal} className="text-red-600 hover:text-red-800">
@@ -142,9 +142,6 @@ function ListSong(props) {
 
                                 </Td>
                             </Tr>
-
-
-
                         </Tbody>
                     </Table>
                 </Box>
