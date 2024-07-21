@@ -4,14 +4,15 @@ import Card from "components/card/Card.js";
 import React from "react";
 
 export default function Banner(props) {
-  const { banner, avatar, name, job, posts, followers, following } = props;
+  const { banner, avatar, name, job, posts, followers, albums, Songs } = props;
   // Chakra Color Mode
-  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
-  const textColorSecondary = "gray.400";
+  const textColorPrimary = useColorModeValue("black", "black");
+  const textColorSecondary = "black";
   const borderColor = useColorModeValue(
     "white !important",
-    "#111C44 !important"
+    "black !important"
   );
+
   return (
     <Card mb={{ base: "0px", lg: "20px" }} align='center'>
       <Box
@@ -27,7 +28,7 @@ export default function Banner(props) {
         h='87px'
         w='87px'
         mt='-43px'
-        border='4px solid'
+        border='2px solid'
         borderColor={borderColor}
       />
       <Text color={textColorPrimary} fontWeight='bold' fontSize='xl' mt='10px'>
@@ -37,7 +38,7 @@ export default function Banner(props) {
         {job}
       </Text>
       <Flex w='max-content' mx='auto' mt='26px'>
-        <Flex mx='auto' me='60px' align='center' direction='column'>
+        <Flex mx='auto' me='30px' align='center' direction='column'>
           <Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
             {posts}
           </Text>
@@ -45,7 +46,7 @@ export default function Banner(props) {
             Posts
           </Text>
         </Flex>
-        <Flex mx='auto' me='60px' align='center' direction='column'>
+        <Flex mx='auto' me='30px' align='center' direction='column'>
           <Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
             {followers}
           </Text>
@@ -53,12 +54,20 @@ export default function Banner(props) {
             Followers
           </Text>
         </Flex>
-        <Flex mx='auto' align='center' direction='column'>
+        <Flex mx='auto' me='30px' align='center' direction='column'>
           <Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
-            {following}
+            {albums}
           </Text>
           <Text color={textColorSecondary} fontSize='sm' fontWeight='400'>
-            Following
+            albums
+          </Text>
+        </Flex>
+        <Flex mx='auto' align='center' direction='column'>
+          <Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
+            {Songs}
+          </Text>
+          <Text color={textColorSecondary} fontSize='sm' fontWeight='400'>
+            Songs
           </Text>
         </Flex>
       </Flex>

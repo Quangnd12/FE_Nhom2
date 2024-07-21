@@ -11,7 +11,7 @@ import Artist from './pages/artist/Artist'
 import Login from './pages/auth/login';
 import Register from './pages/auth/register';
 import ForgotPass from './pages/auth/forgotPass';
-
+import Track from "./pages/track/Track";
 import Content from './pages/content/Content';
 import InfoClient from './pages/info-client/Info-client';
 function App() {
@@ -23,7 +23,7 @@ function App() {
         </div>
         <div className='flex-1'>
           <Header />
-          <div className='overflow-y-auto' style={{ background: 'linear-gradient(to bottom, #888888, #000000 95%)', height:"620px" }}>
+          <div className='overflow-y-auto' style={{ background: 'linear-gradient(to bottom, #888888, #000000 95%)', height: "620px" }}>
             <Routes>
               <Route path='/' Component={HomePage}></Route>
               <Route path='/search' Component={SearchPage}></Route>
@@ -33,6 +33,7 @@ function App() {
               <Route path='/forgot' Component={ForgotPass}></Route>
               <Route path='/content' Component={Content}></Route>
               <Route path='/info' Component={InfoClient}></Route>
+              <Route path='/track' element={<Track />} />
             </Routes>
           </div>
         </div>

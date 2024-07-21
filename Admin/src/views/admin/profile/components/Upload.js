@@ -17,9 +17,10 @@ import Dropzone from "views/admin/profile/components/Dropzone";
 export default function Upload(props) {
   const { used, total, ...rest } = props;
   // Chakra Color Mode
-  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
-  const brandColor = useColorModeValue("brand.500", "white");
-  const textColorSecondary = "gray.400";
+  const textColorPrimary = useColorModeValue("black", "black");
+  const brandColor = useColorModeValue("black", "white");
+  const textColorSecondary = "gray.500";
+
   return (
     <Card {...rest} mb='20px' align='center' p='20px'>
       <Flex h='100%' direction={{ base: "column", "2xl": "row" }}>
@@ -36,8 +37,8 @@ export default function Upload(props) {
                   Upload Files
                 </Text>
               </Flex>
-              <Text fontSize='sm' fontWeight='500' color='secondaryGray.500'>
-                PNG, JPG and GIF files are allowed
+              <Text fontSize='sm' fontWeight='500' color='blackAlpha.500'>
+                Upload file nhạc lên
               </Text>
             </Box>
           }
@@ -49,7 +50,7 @@ export default function Upload(props) {
             textAlign='start'
             fontSize='2xl'
             mt={{ base: "20px", "2xl": "50px" }}>
-            Complete your profile
+            Lưu ý khi upload
           </Text>
           <Text
             color={textColorSecondary}
@@ -57,8 +58,8 @@ export default function Upload(props) {
             my={{ base: "auto", "2xl": "10px" }}
             mx='auto'
             textAlign='start'>
-            Stay on the pulse of distributed projects with an anline whiteboard
-            to plan, coordinate and discuss
+            Upload nhạc không được upload video hình ảnh ...
+            Không được upload quá 1 gb.
           </Text>
           <Flex w='100%'>
             <Button
@@ -67,9 +68,10 @@ export default function Upload(props) {
               w='140px'
               minW='140px'
               mt={{ base: "20px", "2xl": "auto" }}
-              variant='brand'
+              variant='solid'
+              colorScheme='blackAlpha'
               fontWeight='500'>
-              Publish now
+              Tải lên
             </Button>
           </Flex>
         </Flex>

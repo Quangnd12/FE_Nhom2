@@ -13,6 +13,10 @@ import Genre, { AddGenre, EditGenre, DeleteGenre } from "./views/admin/genre";
 
 // Auth Imports
 import SignInCentered from "views/auth/signIn";
+import Playlist from "views/admin/playlist";
+import EditPlaylist from "views/admin/playlist/components/edit";
+import AddPlaylist from "views/admin/playlist/components/add";
+import DeletePlaylist from "views/admin/playlist/components/delete";
 
 const routes = [
   {
@@ -26,7 +30,7 @@ const routes = [
     name: "Song",
     layout: "/admin",
     path: "/song",
-    icon: ( <Icon as={MdMusicNote} width='20px' height='20px' color='inherit'/> ),
+    icon: (<Icon as={MdMusicNote} width='20px' height='20px' color='inherit' />),
     component: Song,
   },
   {
@@ -66,10 +70,34 @@ const routes = [
   },
   {
     name: "Playlist",
-    layout: "/auth",
-    path: "/sign-in",
+    layout: "/admin",
+    path: "/playlist",
     icon: <Icon as={MdPlaylistPlay} width='20px' height='20px' color='inherit' />,
-    component: SignInCentered,
+    component: Playlist,
+  },
+  {
+    name: "Playlist",
+    layout: "/admin",
+    path: "/EditPlaylist",
+    icon: <Icon as={MdPlaylistPlay} width='20px' height='20px' color='inherit' />,
+    component: EditPlaylist,
+    displayInSidebar: false,
+  },
+  {
+    name: "Playlist",
+    layout: "/admin",
+    path: "/AddPlaylist",
+    icon: <Icon as={MdPlaylistPlay} width='20px' height='20px' color='inherit' />,
+    component: AddPlaylist,
+    displayInSidebar: false,
+  },
+  {
+    name: "Playlist",
+    layout: "/admin",
+    path: "/DeletePlaylist",
+    icon: <Icon as={MdPlaylistPlay} width='20px' height='20px' color='inherit' />,
+    component: DeletePlaylist,
+    displayInSidebar: false,
   },
   {
     name: "Genre",
@@ -99,6 +127,7 @@ const routes = [
     component: DeleteGenre,
     displayInSidebar: false,
   },
+
 ];
 
 export default routes;
