@@ -9,7 +9,7 @@ import Profile from "views/admin/profile";
 import DataTables from "views/admin/dataTables";
 import AddSong from "views/admin/song/components/add";
 import EditSong from "views/admin/song/components/edit";
-
+import Genre, { AddGenre, EditGenre, DeleteGenre } from "./views/admin/genre";
 
 // Auth Imports
 import SignInCentered from "views/auth/signIn";
@@ -36,14 +36,13 @@ const routes = [
     component: AddSong,
     displayInSidebar: false,
   },
-   {
+  {
     layout: '/admin',
     name: "Edit Song",
     path: "/editSong",
     component: EditSong,
     displayInSidebar: false,
   },
-  
   {
     name: "Artist",
     layout: "/admin",
@@ -74,10 +73,31 @@ const routes = [
   },
   {
     name: "Genre",
-    layout: "/auth",
-    path: "/sign-in",
+    layout: "/admin",
+    path: "/genre",
     icon: <Icon as={MdCategory} width='20px' height='20px' color='inherit' />,
-    component: SignInCentered,
+    component: Genre,
+  },
+  {
+    layout: '/admin',
+    name: "Add Genre",
+    path: "/addGenre",
+    component: AddGenre,
+    displayInSidebar: false,
+  },
+  {
+    layout: '/admin',
+    name: "Edit Genre",
+    path: "/editGenre",
+    component: EditGenre,
+    displayInSidebar: false,
+  },
+  {
+    layout: '/admin',
+    name: "Delete Genre",
+    path: "/deleteGenre",
+    component: DeleteGenre,
+    displayInSidebar: false,
   },
 ];
 
