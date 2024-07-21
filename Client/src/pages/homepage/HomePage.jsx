@@ -31,9 +31,9 @@ const data = {
     },
     {
       id: 5,
-      name: "Soobin",
+      name: "Lou Hoàng",
       image:
-        "https://i.scdn.co/image/ab6761610000e5ebb9c9e23c646125922719489e",
+        "https://th.bing.com/th/id/R.4a1c71aa6a20fe87c10af4378958abd5?rik=ATPDpvYiJDpcDw&riu=http%3a%2f%2fnguoi-noi-tieng.com%2fphoto%2ftieu-su-ca-si-lou-hoang-6975.jpg&ehk=GRHvvZnn6Yxp7RjoeNrX5K9d%2f68bDiv9fPBhME0gK08%3d&risl=&pid=ImgRaw&r=0",
       title: "Artist",
     },
     {

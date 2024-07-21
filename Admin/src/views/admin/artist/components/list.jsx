@@ -72,7 +72,7 @@ function ListArtist(props) {
                     <Table variant="simple" color="gray.500">
                         <Thead>
                             <Tr>
-                                <Th>STT</Th>
+                                <Th>No</Th>
                                 <Th>Artist</Th>
                                 <Th>Gener</Th>
                                 <Th>Personal_Info</Th>

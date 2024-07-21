@@ -1,6 +1,6 @@
 import React from "react";
 import 'tailwindcss/tailwind.css';
-import { Box, Flex, Text, useColorModeValue, Icon } from "@chakra-ui/react";
+import { Box, Flex, useColorModeValue, Icon, Button } from "@chakra-ui/react";
 import { Link } from 'react-router-dom';
 import { MdArrowBack } from "react-icons/md";
 
@@ -21,9 +21,7 @@ const EditArtist = () => {
           pb='20px'
           mb='10px'
           boxShadow='0px 40px 58px -20px rgba(112, 144, 176, 0.26)'>
-          <Text color={textColor} fontSize='xl' fontWeight='600'>
-            Edit Artist
-          </Text>
+         
         </Flex>
 
         <Box overflowX="auto">
@@ -81,15 +79,24 @@ const EditArtist = () => {
                   </div>
                 </div>
                 <div className="flex justify-between items-center mt-6">
-                  <Link to='/admin/artists'>
-                    <Icon as={MdArrowBack} width='20px' height='20px' color='inherit' />
-                  </Link>
-                  <button
-                    type="submit"
-                    className="bg-green-500 text-white px-6 py-3 rounded-full hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 text-medium"
+                <Link to="/admin/artist">
+                  <Button
+                    variant="outline"
+                    leftIcon={<Icon as={MdArrowBack} />}
+                    colorScheme="teal"
+                    width={'70px'}
+                    size="sm"
                   >
+                    Back
+                  </Button>
+                  </Link>
+                  <Button                 
+                    colorScheme="teal"
+                    size="sm" 
+                    textAlign={'center'}
+                    width={'70px'}>                   
                     Save
-                  </button>
+                  </Button>
                 </div>
               </form>
             </div>

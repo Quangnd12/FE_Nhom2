@@ -1,7 +1,6 @@
 import React from 'react';
 import ContentCard from '../../components/cards/Content';
 
-
 const Content = () => {
   // Sample array of items
   const items = [
