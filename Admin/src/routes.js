@@ -9,6 +9,7 @@ import Profile from "views/admin/profile";
 // import DataTables from "views/admin/dataTables";
 import AddSong from "views/admin/song/components/add";
 import EditSong from "views/admin/song/components/edit";
+import Genre, { AddGenre, EditGenre, DeleteGenre } from "./views/admin/genre";
 import Albums from "views/admin/albums";
 import AddAlbum from "views/admin/albums/components/add";
 import EditAlbum from "views/admin/albums/components/edit";
