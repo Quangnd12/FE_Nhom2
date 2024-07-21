@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import 'tailwindcss/tailwind.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import './auth.css';
 
@@ -53,7 +53,7 @@ const Login = () => {
                             </div>
 
                             <button
-                                className="w-full py-2 px-4 bg-black border border-[#6a6a6a] border-[0.5px] text-white rounded-3xl shadow-md flex items-center justify-center hover:border-white hover:border-[1px] hover:ring-1 hover:ring-white transition-all"
+                                className="w-full py-2 px-4 bg-black border-[#6a6a6a] border-[0.5px] text-white rounded-3xl shadow-md flex items-center justify-center hover:border-white hover:border-[1px] hover:ring-1 hover:ring-white transition-all"
                                 type="submit"
                             >
                                 <img src="assets/images/google.png" alt="Google" className="w-5 h-5 mr-2" />

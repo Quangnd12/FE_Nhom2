@@ -2,7 +2,7 @@ import React from "react";
 import 'tailwindcss/tailwind.css';
 import { Link } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import './auth.css';
 
