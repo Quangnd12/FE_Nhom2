@@ -6,9 +6,18 @@ import { MdPlaylistPlay, MdPerson, MdHome, MdCategory, MdLibraryMusic, MdMusicNo
 import MainDashboard from "views/admin/default";
 import Song from "views/admin/song";
 import Profile from "views/admin/profile";
-import DataTables from "views/admin/dataTables";
+// import DataTables from "views/admin/dataTables";
 import AddSong from "views/admin/song/components/add";
 import EditSong from "views/admin/song/components/edit";
+import Albums from "views/admin/albums";
+import AddAlbum from "views/admin/albums/components/add";
+import EditAlbum from "views/admin/albums/components/edit";
+import Artist from "views/admin/artist";
+import AddArtist from "views/admin/artist/components/add";
+import EditArtist from "views/admin/artist/components/edit";
+
+
+
 
 
 // Auth Imports
@@ -36,7 +45,7 @@ const routes = [
     component: AddSong,
     displayInSidebar: false,
   },
-   {
+  {
     layout: '/admin',
     name: "Edit Song",
     path: "/editSong",
@@ -48,8 +57,22 @@ const routes = [
     name: "Artist",
     layout: "/admin",
     icon: <Icon as={MdMic} width='20px' height='20px' color='inherit' />,
-    path: "/data-tables",
-    component: DataTables,
+    path: "/artist",
+    component: Artist,
+  },
+  {
+    layout: '/admin',
+    name: "Add Artist",
+    path: "/addArtist",
+    component: AddArtist,
+    displayInSidebar: false,
+  },
+  {
+    layout: '/admin',
+    name: "Edit Artist",
+    path: "/editArtist",
+    component: EditArtist,
+    displayInSidebar: false,
   },
   {
     name: "Profile",
@@ -60,10 +83,24 @@ const routes = [
   },
   {
     name: "Albums",
-    layout: "/auth",
-    path: "/sign-in",
+    layout: "/admin",
+    path: "/albums",
     icon: <Icon as={MdLibraryMusic} width='20px' height='20px' color='inherit' />,
-    component: SignInCentered,
+    component: Albums,
+  },
+  {
+    layout: '/admin',
+    name: "Add Albums",
+    path: "/addAlbums",
+    component: AddAlbum,
+    displayInSidebar: false,
+  },
+  {
+    layout: '/admin',
+    name: "Edit Albums",
+    path: "/editAlbums",
+    component: EditAlbum,
+    displayInSidebar: false,
   },
   {
     name: "Playlist",
