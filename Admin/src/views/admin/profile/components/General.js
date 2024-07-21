@@ -9,8 +9,8 @@ import Information from "views/admin/profile/components/Information";
 export default function GeneralInformation(props) {
   const { ...rest } = props;
   // Chakra Color Mode
-  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
-  const textColorSecondary = "gray.400";
+  const textColorPrimary = useColorModeValue("black.900", "white");
+  const textColorSecondary = "gray.500";
   const cardShadow = useColorModeValue(
     "0px 18px 40px rgba(112, 144, 176, 0.12)",
     "unset"
@@ -23,47 +23,44 @@ export default function GeneralInformation(props) {
         fontSize='2xl'
         mt='10px'
         mb='4px'>
-        General Information
+        Giới Thiệu Nghệ Sĩ/Ca SĨ
       </Text>
       <Text color={textColorSecondary} fontSize='md' me='26px' mb='40px'>
-        As we live, our hearts turn colder. Cause pain is what we go through as
-        we become older. We get insulted by others, lose trust for those others.
-        We get back stabbed by friends. It becomes harder for us to give others
-        a hand. We get our heart broken by people we love, even that we give
-        them all...
+        Cũng đã quen với đắng cay Bước vào đời tay trắng cùng lắm lại trở về với trắng tay Mỗi ngày ta thức dậy, dành một lúc ngắm nhìn mây trắng bay Khi mày yêu cuộc đời, cuộc đời cũng sẽ yêu mày đắm say
       </Text>
       <SimpleGrid columns='2' gap='20px'>
         <Information
           boxShadow={cardShadow}
-          title='Education'
-          value='Stanford University'
+          title='Name'
+          value='Đen Vâu'
         />
         <Information
           boxShadow={cardShadow}
           title='Languages'
-          value='English, Spanish, Italian'
+          value='Vietnamese'
         />
         <Information
           boxShadow={cardShadow}
-          title='Department'
-          value='Product Design'
+          title='Profession'
+          value='Rapper'
         />
         <Information
           boxShadow={cardShadow}
-          title='Work History'
-          value='Google, Facebook'
+          title='Albums'
+          value='KOBUKOVU, Lối Nhỏ, Trời hôm nay nhiều mây cực!'
         />
         <Information
           boxShadow={cardShadow}
-          title='Organization'
-          value='Simmmple Web LLC'
+          title='Record Label'//nhãn đĩa
+          value='Indie'
         />
         <Information
           boxShadow={cardShadow}
           title='Birthday'
-          value='20 July 1986'
+          value='13 - 05 - 1989'
         />
       </SimpleGrid>
+
     </Card>
   );
 }

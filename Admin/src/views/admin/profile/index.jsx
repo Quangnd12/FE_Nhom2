@@ -32,8 +32,8 @@ import Storage from "views/admin/profile/components/Storage";
 import Upload from "views/admin/profile/components/Upload";
 
 // Assets
-import banner from "assets/img/auth/banner.png";
-import avatar from "assets/img/avatars/avatar4.png";
+import banner from "assets/img/auth/image.png";
+import avatar from "assets/img/avatars/image.png";
 import React from "react";
 
 export default function Overview() {
@@ -54,11 +54,12 @@ export default function Overview() {
           gridArea='1 / 1 / 2 / 2'
           banner={banner}
           avatar={avatar}
-          name='Adela Parkson'
-          job='Product Designer'
+          name='Đen Vâu'
+          job='Ca Sĩ'
           posts='17'
           followers='9.7k'
-          following='274'
+          albums='10'
+          Songs='274'
         />
         <Storage
           gridArea={{ base: "2 / 1 / 3 / 2", lg: "1 / 2 / 2 / 3" }}
@@ -92,11 +93,12 @@ export default function Overview() {
           gridArea='1 / 2 / 2 / 2'
           banner={banner}
           avatar={avatar}
-          name='Adela Parkson'
-          job='Product Designer'
+          name='Đen Vâu'
+          job='Ca Sĩ'
           posts='17'
           followers='9.7k'
-          following='274'
+          albums='10'
+          Songs='274'
         />
         <General
           gridArea={{ base: "2 / 1 / 3 / 2", lg: "1 / 2 / 2 / 3" }}
