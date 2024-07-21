@@ -56,7 +56,6 @@ const routes = [
     component: EditSong,
     displayInSidebar: false,
   },
-
   {
     name: "Artist",
     layout: "/admin",
@@ -139,10 +138,31 @@ const routes = [
   },
   {
     name: "Genre",
-    layout: "/auth",
-    path: "/sign-in",
+    layout: "/admin",
+    path: "/genre",
     icon: <Icon as={MdCategory} width='20px' height='20px' color='inherit' />,
-    component: SignInCentered,
+    component: Genre,
+  },
+  {
+    layout: '/admin',
+    name: "Add Genre",
+    path: "/addGenre",
+    component: AddGenre,
+    displayInSidebar: false,
+  },
+  {
+    layout: '/admin',
+    name: "Edit Genre",
+    path: "/editGenre",
+    component: EditGenre,
+    displayInSidebar: false,
+  },
+  {
+    layout: '/admin',
+    name: "Delete Genre",
+    path: "/deleteGenre",
+    component: DeleteGenre,
+    displayInSidebar: false,
   },
 
 ];
