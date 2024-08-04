@@ -4,7 +4,7 @@ import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 const RoundCard = ({ image, name, title }) => {
   const greenColor = getComputedStyle(document.documentElement).getPropertyValue("--green-color").trim();
   return (
-    <div className="hover:bg-gray-500 cursor-pointer transition-all rounded-md relative p-2" >
+    <div className="hover:bg-gray-500 cursor-pointer transition-all rounded-md relative p-2"  >
       <div className="w-100">
         <div
           className="w-100"
@@ -23,7 +23,7 @@ const RoundCard = ({ image, name, title }) => {
           sx={{ color: greenColor }}
         />
       </div>
-      <div className="text-center text-white font-bold truncate overflow-hidden whitespace-nowrap" style={{maxWidth:"150px"}}>{name}</div>
+      <div className="text-center text-white font-bold truncate overflow-hidden whitespace-nowrap" style={{maxWidth:"100%"}}>{name}</div>
       <div className="text-center text-white">{title}</div>
     </div>
   );
