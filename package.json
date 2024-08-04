@@ -52,8 +52,6 @@
 
     "bootstrap": "^5.3.3",
 
-    "dotenv": "^16.4.5",
-
     "framer-motion": "^4.1.17",
 
     "postcss": "^8.4.39",
@@ -159,6 +157,8 @@
   "devDependencies": {
 
     "@types/react-router-dom": "^5.3.3",
+
+    "dotenv": "^16.4.5",
 
     "gh-pages": "^3.2.3"
 

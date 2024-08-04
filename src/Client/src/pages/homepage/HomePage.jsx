@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import RowItems from "../../components/row_items/RowItems";
 import Footer from "../../components/footer/Footer";
-
+import endpoints from "../../../../endpoint/endpoint";
 
 const data = {
   artist: [
@@ -123,19 +123,47 @@ const data = {
 };
 
 const HomePage = () => {
+  const [artist, setArtist] = useState([]);
+  const [album, setAlbum] = useState([]);
+  const [radio, setRadio] = useState([]);
+
+  useEffect(() => {
+    getArtist();
+    getAlbum();
+  }, []);
+
+  const getArtist = async () => {
+    try {
+      console.log(`${process.env.REACT_APP_API_URL}/${endpoints.artists}`);
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/${endpoints.artists}`);
+      const data = await response.json();
+      setArtist(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getAlbum = async () => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/${endpoints.albums}`);
+      const data = await response.json();
+      console.log(data);
+      setAlbum(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <RowItems
         title={"Popular artist"}
-        data={data.artist}
+        data={artist}
+        type={"Artist"}
       />
       <RowItems
         title={"Popular albums"}
-        data={data.album}
-      />
-      <RowItems
-        title={"Popular Radio"}
-        data={data.radio}
+        data={album}
       />
       {/* <RowItems
         title={"Featured charts"}
