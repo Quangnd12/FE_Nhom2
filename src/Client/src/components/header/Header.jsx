@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import SearchInput from "../searchInput/index";
 import BellIcon from "../Icons/BellIcon";
 import { Link } from "react-router-dom";
+import { set } from "react-hook-form";
 
 const Header = () => {
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const data = 
+      console.log("token", token);
+    }
+  }, []);
+
   return (
     <div className="w-100 bg-[var(--black-color)]">
       <div className=" p-4 flex justify-between items-center">
@@ -21,10 +31,10 @@ const Header = () => {
         </div>
 
         <div className="flex gap-2">
-        <Link to={"/content"}>
-          <div className="mt-3 hover:bg-gray-600 rounded-full">
-            <BellIcon></BellIcon>
-          </div>
+          <Link to={"/content"}>
+            <div className="mt-3 hover:bg-gray-600 rounded-full">
+              <BellIcon></BellIcon>
+            </div>
           </Link>
           <Link to={"/register"}>
             <div
