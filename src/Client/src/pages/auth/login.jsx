@@ -6,15 +6,26 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useForm } from "react-hook-form";
 
 import "./auth.css";
+import endpoints from "../../../../endpoint/endpoint";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const { register, getValues, handleSubmit, setValue, setError, reset, formState } = useForm();
 
-  const loginSubmit = value => {
-    console.log("value submit===", value);
-    alert("Đăng ký thành công *_*");
+  const loginSubmit = async value => {
+    const response = await fetch(process.env.REACT_APP_API_URL + "/" + endpoints.auth + "/" + endpoints.login, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(value),
+    });
+    const result = await response.json();
+    if (response.status === 200) {
+      if (result.token) {
+        localStorage.setItem("token", result.token);
+      }
+      alert("Đăng nhập thành công!");
+    }
   };
 
   const [isChecked, setIsChecked] = useState(false);
