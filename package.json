@@ -1,5 +1,4 @@
 {
-
   "name": "fe_nhom2",
   "version": "1.0.1",
   "private": true,
@@ -32,6 +31,7 @@
     "react": "^18.3.1",
     "react-apexcharts": "1.4.0",
     "react-calendar": "^3.7.0",
+    "react-cookie": "^7.2.0",
     "react-custom-scrollbars-2": "^4.2.1",
     "react-dom": "^18.3.1",
     "react-dropzone": "^12.0.4",

@@ -1,6 +1,6 @@
 import React from "react";
 import { Icon } from "@chakra-ui/react";
-import { MdPlaylistPlay, MdPerson, MdHome, MdCategory, MdLibraryMusic, MdMusicNote, MdMic } from "react-icons/md";
+import { MdPlaylistPlay, MdPerson, MdHome, MdCategory, MdLibraryMusic, MdMusicNote, MdMic, MdFavorite } from "react-icons/md";
 
 // Admin Imports
 import MainDashboard from "./views/admin/default";
@@ -16,8 +16,9 @@ import EditAlbum from "./views/admin/albums/components/edit";
 import Artist from "./views/admin/artist";
 import AddArtist from "./views/admin/artist/components/add";
 import EditArtist from "./views/admin/artist/components/edit";
-
-
+import Favorite from "./views/admin/favorite";
+import AddFavorite from "./views/admin/favorite/components/add";
+import EditFavorite from "./views/admin/favorite/components/edit";
 
 
 
@@ -53,7 +54,7 @@ const routes = [
   {
     layout: '/admin',
     name: "Edit Song",
-    path: "/editSong",
+    path: "/editSong/:id",
     component: EditSong,
     displayInSidebar: false,
   },
@@ -163,6 +164,27 @@ const routes = [
     name: "Delete Genre",
     path: "/deleteGenre",
     component: DeleteGenre,
+    displayInSidebar: false,
+  },
+  {
+    name: "Favorites",
+    layout: "/admin",
+    path: "/favorite",
+    icon: <Icon as={MdFavorite} width='20px' height='20px' color='inherit' />,
+    component: Favorite,
+  },
+  {
+    layout: '/admin',
+    name: "Edit favorite",
+    path: "/editFavorite/:id",
+    component: EditFavorite,
+    displayInSidebar: false,
+  },
+  {
+    layout: '/admin',
+    name: "Add favorite",
+    path: "/addFavorite",
+    component: AddFavorite,
     displayInSidebar: false,
   },
 

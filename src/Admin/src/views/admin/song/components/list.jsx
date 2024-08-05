@@ -1,53 +1,65 @@
-import { Box, Button, Flex, Table, Tbody, Td, Text, Th, Thead, Tr, useColorModeValue, } from "@chakra-ui/react";
-import React, { useMemo, useState } from "react";
+import { Box, Button, Flex, Table, Tbody, Td, Text, Th, Thead, Tr, useColorModeValue, Image, Icon } from "@chakra-ui/react";
+import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import { Icon } from '@chakra-ui/react';
-import { MdPlayArrow, MdEdit, MdDelete, MdAdd } from "react-icons/md";
-import {
-    useGlobalFilter,
-    usePagination,
-    useSortBy,
-    useTable,
-} from "react-table";
-
+import { MdEdit, MdDelete, MdAdd, MdPause, MdPlayArrow } from "react-icons/md";
 import '../css/song.css';
 import DeleteSong from "./delete";
+import { Song, deleteSong } from "../../../../services/song";
+import AudioPlayer from "../../audio";
+import { BASE_URL } from "../../../../config/apiConfig";
 
 
-function ListSong(props) {
-
+function ListSong() {
+    const [song, setSong] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
+    const [currentAudioUrl, setCurrentAudioUrl] = useState(null);
+    const [songIdToDelete, setSongIdToDelete] = useState(null);
+    const path="uploads";
 
-    const handleOpenModal = () => setModalOpen(true);
-    const handleCloseModal = () => setModalOpen(false);
+    useEffect(() => {
+        initData();
+    }, []);
 
-    const { columnsData, tableData } = props;
 
-    const columns = useMemo(() => columnsData, [columnsData]);
-    const data = useMemo(() => tableData, [tableData]);
+    const initData = async () => {
+        const result = await Song();
+        console.log(result);
+        setSong(result);
+    }
 
-    const tableInstance = useTable(
-        {
-            columns,
-            data,
-        },
-        useGlobalFilter,
-        useSortBy,
-        usePagination
-    );
+    const handleOpenModal = (songId) => {
+        setSongIdToDelete(songId);
+        setModalOpen(true);
+    };
 
-    const { getTableProps, getTableBodyProps, headerGroups, page, prepareRow } =
-        tableInstance;
+    const handleCloseModal = () => {
+        setModalOpen(false);
+        setSongIdToDelete(null);
+    };
+
+    const handlePlayPause = (fileName) => {
+        const audioUrl = `${BASE_URL}/${path}/${fileName}`;
+        setCurrentAudioUrl(currentAudioUrl === audioUrl ? null : audioUrl);
+    };
+
+
+    const handleDelete = async (songId) => {
+        try {
+            await deleteSong(songId);
+            setSong((prevSongs) => prevSongs.filter((song) => song.id !== songId));
+            handleCloseModal();
+        } catch (error) {
+            console.error('Error deleting song:', error);
+        }
+    };
+
 
     const textColor = useColorModeValue("navy.700", "white");
-    const textColorSecondary = useColorModeValue("secondaryGray.600", "white");
+
 
     return (
         <>
-            <Flex
-                direction='column'
-                w='100%'
-                overflowX={{ sm: "scroll", lg: "hidden" }}>
+            <Flex direction='column' w='100%' overflowX={{ sm: "scroll", lg: "hidden" }}>
                 <Flex
                     align={{ sm: "flex-start", lg: "center" }}
                     justify='space-between'
@@ -73,7 +85,6 @@ function ListSong(props) {
                             <Icon as={MdAdd} width='20px' height='20px' color='inherit' />
                         </Button>
                     </Link>
-
                 </Flex>
 
                 <Box overflowX="auto">
@@ -84,67 +95,51 @@ function ListSong(props) {
                                 <Th>Title</Th>
                                 <Th>Audio</Th>
                                 <Th>Duration</Th>
-                                <Th>Tempo</Th>
-                                <Th>More</Th>
+                                <Th>Artist</Th>
+                                <Th>Albums</Th>
+                                <Th>Image</Th>
                                 <Th>Genre</Th>
                                 <Th>Action</Th>
                             </Tr>
                         </Thead>
                         <Tbody>
-                            <Tr className={`row-${1 % 2}`}>
-                                <Td>1</Td>
-                                <Td>Em của ngày hôm qua</Td>
-                                <Td><Icon as={MdPlayArrow} width='20px' height='20px' color='inherit' /></Td>
-                                <Td>3:30</Td>
-                                <Td>108-120 BPM</Td>
-                                <Td>256kbps</Td>
-                                <Td>Pop</Td>
-                                <Td>
-                                    <Link to='/admin/editSong' className='text-blue-600 hover:text-blue-800'><Icon as={MdEdit} width='20px' height='20px' color='inherit' mr='20px' /></Link>
-                                    <button onClick={handleOpenModal} className="text-red-600 hover:text-red-800">
-                                        <Icon as={MdDelete} width='20px' height='20px' color='inherit' mr='20px' />
-                                    </button>
-                                    <DeleteSong isOpen={isModalOpen} onClose={handleCloseModal} />
+                            {song?.map((value, index) => (
+                                <Tr key={index} className={`row-${(index + 1) % 2}`}>
+                                    <Td>{index + 1}</Td>
+                                    <Td>{value?.title}</Td>
+                                    <Td>
+                                        <Icon
+                                            as={currentAudioUrl === `${BASE_URL}/${path}/${value?.audio_file}` ? MdPause : MdPlayArrow}
+                                            width='20px'
+                                            height='20px'
+                                            color='inherit'
+                                            cursor='pointer'
+                                            onClick={() => handlePlayPause(value?.audio_file)}
+                                        />
 
-                                </Td>
-                            </Tr>
-                            <Tr className={`row-${2 % 2}`}>
-                                <Td>2</Td>
-                                <Td>Em của ngày hôm qua</Td>
-                                <Td><Icon as={MdPlayArrow} width='20px' height='20px' color='inherit' /></Td>
-                                <Td>3:30</Td>
-                                <Td>108-120 BPM</Td>
-                                <Td>256kbps</Td>
-                                <Td>Pop</Td>
-                                <Td>
-                                    <Link to='/admin/editSong' className='text-blue-600 hover:text-blue-800'><Icon as={MdEdit} width='20px' height='20px' color='inherit' mr='20px' /></Link>
-                                    <button onClick={handleOpenModal} className="text-red-600 hover:text-red-800">
-                                        <Icon as={MdDelete} width='20px' height='20px' color='inherit' mr='20px' />
-                                    </button>
-                                    <DeleteSong isOpen={isModalOpen} onClose={handleCloseModal} />
-
-                                </Td>
-                            </Tr>
-                            <Tr className={`row-${3 % 2}`}>
-                                <Td>3</Td>
-                                <Td>Em của ngày hôm qua</Td>
-                                <Td><Icon as={MdPlayArrow} width='20px' height='20px' color='inherit' /></Td>
-                                <Td>3:30</Td>
-                                <Td>108-120 BPM</Td>
-                                <Td>256kbps</Td>
-                                <Td>Pop</Td>
-                                <Td>
-                                    <Link to='/admin/editSong' className='text-blue-600 hover:text-blue-800'><Icon as={MdEdit} width='20px' height='20px' color='inherit' mr='20px' /></Link>
-                                    <button onClick={handleOpenModal} className="text-red-600 hover:text-red-800">
-                                        <Icon as={MdDelete} width='20px' height='20px' color='inherit' mr='20px' />
-                                    </button>
-                                    <DeleteSong isOpen={isModalOpen} onClose={handleCloseModal} />
-
-                                </Td>
-                            </Tr>
+                                    </Td>
+                                    <Td>{value?.duration_ms}</Td>
+                                    <Td>{value?.artist_name}</Td>
+                                    <Td>{value?.album_title}</Td>
+                                    <Td>
+                                        <Image src={`${BASE_URL}/${path}/${value?.cover_image}`} alt={value?.artist_name} boxSize="50px" mr="2" />
+                                    </Td>
+                                    <Td>{value?.genre_name}</Td>
+                                    <Td>
+                                        <Link to={`/admin/editSong/${value?.id}`} className='text-blue-600 hover:text-blue-800'>
+                                            <Icon as={MdEdit} width='20px' height='20px' color='inherit' mr='20px' />
+                                        </Link>
+                                        <button onClick={() => handleOpenModal(value?.id)} className="text-red-600 hover:text-red-800">
+                                            <Icon as={MdDelete} width='20px' height='20px' color='inherit' mr='20px' />
+                                        </button>
+                                        <DeleteSong isOpen={isModalOpen} onClose={handleCloseModal} onDelete={handleDelete} songId={songIdToDelete} />
+                                    </Td>
+                                </Tr>
+                            ))}
                         </Tbody>
                     </Table>
                 </Box>
+                {currentAudioUrl && <AudioPlayer audioUrl={currentAudioUrl} />}
             </Flex>
         </>
     );

@@ -1,7 +1,7 @@
 // DeleteSong.js
 import React from 'react';
 
-const DeleteSong = ({ isOpen, onClose }) => {
+const DeleteSong = ({ isOpen, onClose,onDelete, songId }) => {
   if (!isOpen) return null;
 
   return (
@@ -17,9 +17,7 @@ const DeleteSong = ({ isOpen, onClose }) => {
             Cancel
           </button>
           <button
-            onClick={() => {
-              onClose();
-            }}
+            onClick={() => onDelete(songId)}
             className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
           >
             Delete
