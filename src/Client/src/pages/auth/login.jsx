@@ -7,9 +7,13 @@ import { useForm } from "react-hook-form";
 
 import "./auth.css";
 import endpoints from "../../../../endpoint/endpoint";
+import { jwtDecode } from "jwt-decode";
+import { useDispatch } from "react-redux";
+import { login } from "../../../../redux/slice/userInformationSlice";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
 
   const { register, getValues, handleSubmit, setValue, setError, reset, formState } = useForm();
 
@@ -24,6 +28,8 @@ const Login = () => {
       if (result.token) {
         localStorage.setItem("token", result.token);
       }
+      const decodedToken = jwtDecode(result.token);
+      dispatch(login(decodedToken));
       alert("Đăng nhập thành công!");
     }
   };

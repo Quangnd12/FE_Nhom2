@@ -18,6 +18,7 @@ import { ItemContent } from '../../components/menu/ItemContent';
 import { SearchBar } from '../../components/navbar/searchBar/SearchBar';
 import { SidebarResponsive } from '../../components/sidebar/Sidebar';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import React from 'react';
 // Assets
 // import navImage from 'assets/img/layout/Navbar.png';
@@ -25,8 +26,10 @@ import { MdNotificationsNone, MdInfoOutline } from 'react-icons/md';
 import { FaEthereum } from 'react-icons/fa';
 import routes from '../../routes.js';
 import { ThemeEditor } from './ThemeEditor';
+import { logout } from '../../../../redux/slice/userInformationSlice';
 export default function HeaderLinks(props) {
 	const { secondary } = props;
+	const dispatch = useDispatch();
 	// Chakra Color Mode
 	const navbarIcon = useColorModeValue('gray.400', 'white');
 	let menuBg = useColorModeValue('white', 'navy.800');
@@ -41,6 +44,12 @@ export default function HeaderLinks(props) {
 		'14px 17px 40px 4px rgba(112, 144, 176, 0.06)'
 	);
 	const borderButton = useColorModeValue('secondaryGray.500', 'whiteAlpha.200');
+
+	const handleLogout = () => {
+		dispatch(logout());
+		localStorage.clear('token');
+		window.location.href = '/';
+	};
 	return (
 		<Flex
 			w={{ sm: '100%', md: 'auto' }}
@@ -105,19 +114,19 @@ export default function HeaderLinks(props) {
 				</MenuList>
 			</Menu>
 
-      <Menu>
-        <MenuButton p='0px'>
-          <Icon
-            mt='6px'
-            as={MdInfoOutline}
-            color={navbarIcon}
-            w='18px'
-            h='18px'
-            me='10px'
-          />
-        </MenuButton>
-        
-      </Menu>
+			<Menu>
+				<MenuButton p='0px'>
+					<Icon
+						mt='6px'
+						as={MdInfoOutline}
+						color={navbarIcon}
+						w='18px'
+						h='18px'
+						me='10px'
+					/>
+				</MenuButton>
+
+			</Menu>
 
 			<ThemeEditor navbarIcon={navbarIcon} />
 
@@ -161,7 +170,7 @@ export default function HeaderLinks(props) {
 							color="red.400"
 							borderRadius="8px"
 							px="14px">
-							<Text fontSize="sm">Log out</Text>
+							<Text fontSize="sm" onClick={handleLogout}>Log out</Text>
 						</MenuItem>
 					</Flex>
 				</MenuList>
