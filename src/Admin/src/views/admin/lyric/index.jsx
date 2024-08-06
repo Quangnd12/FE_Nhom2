@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, Flex, Grid } from "@chakra-ui/react";
 
-import ListGenre from "./components/list";
+import ListLyric from "./components/list";
 import { tableColumnsTopCreators } from "./variables/tableColumnsTopCreators";
-import Card from '../../../components/card/Card'; 
+import Card from "../../../components/card/Card";
 
-function Genre() {
+function Lyric() {
   return (
     <Box pt={{ base: "180px", md: "80px", xl: "80px" }}>
       <Grid
@@ -16,9 +16,7 @@ function Genre() {
       >
         <Flex flexDirection="column">
           <Card px="0px" mb="20px">
-            <ListGenre
-              columnsData={tableColumnsTopCreators}
-            />
+            <ListLyric columnsData={tableColumnsTopCreators} />
           </Card>
         </Flex>
       </Grid>
@@ -26,8 +24,8 @@ function Genre() {
   );
 }
 
-export default Genre;
+export default Lyric;
 
-export { default as AddGenre } from './components/add';
-export { default as EditGenre } from './components/edit';
-export { default as DeleteGenre } from './components/delete';
+export { default as AddLyric } from './components/add';
+export { default as EditLyric } from './components/edit';
+export { default as DeleteLyric } from './components/delete';

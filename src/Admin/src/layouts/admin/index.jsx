@@ -149,7 +149,7 @@ export default function Dashboard(props) {
 						<Box>
 							<Footer />
 						</Box>
-						<ToastContainer/> 
+						<ToastContainer />
 					</Box>
 				</SidebarContext.Provider>
 			</Box>

@@ -13,20 +13,25 @@ import {
   useColorModeValue,
   Icon,
 } from "@chakra-ui/react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { MdAdd } from "react-icons/md";
-import { useGlobalFilter, usePagination, useSortBy, useTable } from "react-table";
-import DeleteGenre from "./delete";
-import '../css/genre.css'; 
+import {
+  useGlobalFilter,
+  usePagination,
+  useSortBy,
+  useTable,
+} from "react-table";
+import DeleteFavorite from "./delete";
+import "../css/favorite.css";
 import { tableColumnsTopCreators } from "../variables/tableColumnsTopCreators";
-import { Genre, deleteGenre } from "Admin/src/service/genre";
+import { Favorite, deleteFavorite } from "Admin/src/service/fav";
 import { toast } from 'react-toastify';
 import Pagination from "Admin/src/components/pagination/Pagination"; 
 
-function ListGenre() {
+function ListFavorite() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
-  const [genres, setGenres] = useState([]);
+  const [favorites, seFavorites] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [resetPagination, setResetPagination] = useState(false);
   const itemsPerPage = 10;
@@ -36,14 +41,25 @@ function ListGenre() {
   }, [currentPage]);
 
   const initData = async () => {
-    const result = await Genre();
-    const genresWithIndex = result.map((genre, index) => ({
-      ...genre,
-      no: index + 1,
-    }));
-    setGenres(genresWithIndex);
+    try {
+      const result = await Favorite();
+      if (result && Array.isArray(result)) {
+        const favoritesWithIndex = result.map((favorite, index) => ({
+          ...favorite,
+          no: index + 1,
+        }));
+        seFavorites(favoritesWithIndex);
+      } else {
+        console.error("Favorite returned invalid data", result);
+        seFavorites([]);
+      }
+    } catch (error) {
+      console.error("Failed to fetch Favorite", error);
+      seFavorites([]);
+    }
   };
   
+
   const handleOpenModal = useCallback((id) => {
     setSelectedId(id);
     setModalOpen(true);
@@ -56,7 +72,7 @@ function ListGenre() {
 
   const handleDelete = useCallback(async (id) => {
     try {
-      await deleteGenre(id);
+      await deleteFavorite(id);
       toast.success("Deleted successfully");
       setCurrentPage(1);
       setResetPagination(true);
@@ -68,7 +84,7 @@ function ListGenre() {
   }, [handleCloseModal]);
 
   const columns = useMemo(() => tableColumnsTopCreators(handleOpenModal) || [], [handleOpenModal]);
-  const data = useMemo(() => genres.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage) || [], [genres, currentPage]); 
+  const data = useMemo(() => favorites.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage) || [], [favorites, currentPage]); 
 
   const tableInstance = useTable(
     {
@@ -81,11 +97,11 @@ function ListGenre() {
   );
 
   const { getTableProps, getTableBodyProps, headerGroups, page, prepareRow } =
-    tableInstance;
+  tableInstance;
 
   const textColor = useColorModeValue("navy.700", "white");
 
-  const totalPages = Math.ceil(genres.length / itemsPerPage);
+  const totalPages = Math.ceil(favorites.length / itemsPerPage);
 
   return (
     <>
@@ -104,10 +120,10 @@ function ListGenre() {
           boxShadow="0px 40px 58px -20px rgba(112, 144, 176, 0.26)"
         >
           <Text color={textColor} fontSize="xl" fontWeight="600">
-            List genre
+            List favorites
           </Text>
 
-          <Link to='/admin/addGenre'>
+          <Link to='/admin/addFavorite'>
             <Button
               variant="action"
               display="flex"
@@ -141,7 +157,7 @@ function ListGenre() {
                   <Tr {...row.getRowProps()} key={row.id} className={`row-${i % 2}`}>
                     {row.cells.map((cell) => (
                       <Td {...cell.getCellProps()} key={cell.column.id}>
-                        {cell.render("Cell")}
+                        {cell.column.id === "user_name" || cell.column.id === "artist_name" ? cell.render("Cell") : cell.render("Cell")}
                       </Td>
                     ))}
                   </Tr>
@@ -157,9 +173,10 @@ function ListGenre() {
         onPageChange={setCurrentPage}
         resetPagination={resetPagination}
       />
-      <DeleteGenre isOpen={isModalOpen} onClose={handleCloseModal} onDelete={() => handleDelete(selectedId)} />
+      {/* Hiển thị modal Delete */}
+      <DeleteFavorite isOpen={isModalOpen} onClose={handleCloseModal} onDelete={() => handleDelete(selectedId)} />
     </>
-  );
+  )
 }
 
-export default ListGenre;
+export default ListFavorite;

@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, Flex, Grid } from "@chakra-ui/react";
 
-import ListGenre from "./components/list";
+import ListFollow from "./components/list";
 import { tableColumnsTopCreators } from "./variables/tableColumnsTopCreators";
-import Card from '../../../components/card/Card'; 
+import Card from "../../../components/card/Card";
 
-function Genre() {
+function Follow() {
   return (
     <Box pt={{ base: "180px", md: "80px", xl: "80px" }}>
       <Grid
@@ -16,7 +16,7 @@ function Genre() {
       >
         <Flex flexDirection="column">
           <Card px="0px" mb="20px">
-            <ListGenre
+            <ListFollow
               columnsData={tableColumnsTopCreators}
             />
           </Card>
@@ -26,8 +26,8 @@ function Genre() {
   );
 }
 
-export default Genre;
+export default Follow;
 
-export { default as AddGenre } from './components/add';
-export { default as EditGenre } from './components/edit';
-export { default as DeleteGenre } from './components/delete';
+export { default as AddFollow } from './components/add';
+export { default as EditFollow } from './components/edit';
+export { default as DeleteFollow } from './components/delete';

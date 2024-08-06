@@ -1,6 +1,6 @@
 import React from "react";
 import { Icon } from "@chakra-ui/react";
-import { MdPlaylistPlay, MdPerson, MdHome, MdCategory, MdLibraryMusic, MdMusicNote, MdMic, MdFavorite } from "react-icons/md";
+import { MdPlaylistPlay, MdPerson, MdHome, MdCategory, MdLibraryMusic, MdMusicNote, MdMic, MdPersonAdd, MdLyrics, MdFavorite } from "react-icons/md";
 
 // Admin Imports
 import MainDashboard from "./views/admin/default";
@@ -10,9 +10,18 @@ import Profile from "./views/admin/profile";
 import AddSong from "./views/admin/song/components/add";
 import EditSong from "./views/admin/song/components/edit";
 import Genre, { AddGenre, EditGenre, DeleteGenre } from "./views/admin/genre";
-import Album, {AddAlbum, EditAlbum, DeleteAlbum} from "./views/admin/albums";
-import Artist, {AddArtist, EditArtist, DeleteArtist} from "./views/admin/artist";
-import Album_song, {AddAlbumSong, EditAlbumSong, DeleteAlbumSong} from "./views/admin/albums_song";
+import Follow, { AddFollow, EditFollow, DeleteFollow } from "./views/admin/follow";
+import Lyric, { AddLyric, EditLyric, DeleteLyric } from "./views/admin/lyric";
+import Favorite, { AddFavorite, EditFavorite, DeleteFavorite } from "./views/admin/fav";
+import Albums, { DeleteAlbum } from "./views/admin/albums";
+import AddAlbum from "./views/admin/albums/components/add";
+import EditAlbum from "./views/admin/albums/components/edit";
+import Artist from "./views/admin/artist";
+import AddArtist from "./views/admin/artist/components/add";
+import EditArtist from "./views/admin/artist/components/edit";
+
+
+
 
 
 // Auth Imports
@@ -23,6 +32,8 @@ import Album_song, {AddAlbumSong, EditAlbumSong, DeleteAlbumSong} from "./views/
 // import DeletePlaylist from "./views/admin/playlist/components/delete";
 
 import Playlist, { AddPlaylist, EditPlaylist, DeletePlaylist } from "./views/admin/playlist";
+import Album_song, { AddAlbumSong, DeleteAlbumSong, EditAlbumSong } from "./views/admin/albums_song";
+import { Album } from "@mui/icons-material";
 const routes = [
   {
     name: "Dashboard",
@@ -120,7 +131,7 @@ const routes = [
     layout: "/admin",
     path: "/albums",
     icon: <Icon as={MdLibraryMusic} width='20px' height='20px' color='inherit' />,
-    component: Album,
+    component: Albums,
   },
   {
     layout: '/admin',
@@ -190,7 +201,7 @@ const routes = [
   {
     layout: '/admin',
     name: "Edit Genre",
-    path: "/editGenre",
+    path: "/editGenre/:id",
     component: EditGenre,
     displayInSidebar: false,
   },
@@ -202,15 +213,78 @@ const routes = [
     displayInSidebar: false,
   },
   {
-    name: "Favorites",
+    name: "Follow",
+    layout: "/admin",
+    path: "/follow",
+    icon: <Icon as={MdPersonAdd} width='20px' height='20px' color='inherit' />,
+    component: Follow,
+  },
+  {
+    layout: '/admin',
+    name: "Add Follow",
+    path: "/addFollow",
+    component: AddFollow,
+    displayInSidebar: false,
+  },
+  {
+    layout: '/admin',
+    name: "Edit Follow",
+    path: "/editFollow/:id",
+    component: EditFollow,
+    displayInSidebar: false,
+  },
+  {
+    layout: '/admin',
+    name: "Delete Follow",
+    path: "/deleteFollow",
+    component: DeleteFollow,
+    displayInSidebar: false,
+  },
+  {
+    name: "Lyric",
+    layout: "/admin",
+    path: "/lyric",
+    icon: <Icon as={MdLyrics} width='20px' height='20px' color='inherit' />, // Sử dụng icon mới
+    component: Lyric,
+  },
+  {
+    layout: '/admin',
+    name: "Add Lyric",
+    path: "/addLyric",
+    component: AddLyric,
+    displayInSidebar: false,
+  },
+  {
+    layout: '/admin',
+    name: "Edit Lyric",
+    path: "/editLyric/:id",
+    component: EditLyric,
+    displayInSidebar: false,
+  },
+  {
+    layout: '/admin',
+    name: "Delete Lyric",
+    path: "/deleteLyric",
+    component: DeleteLyric,
+    displayInSidebar: false,
+  },
+  {
+    name: "Favorite",
     layout: "/admin",
     path: "/favorite",
-    icon: <Icon as={MdFavorite} width='20px' height='20px' color='inherit' />,
+    icon: <Icon as={MdFavorite} width='20px' height='20px' color='inherit' />, // Sử dụng icon mới
     component: Favorite,
   },
   {
     layout: '/admin',
-    name: "Edit favorite",
+    name: "Add Favorite",
+    path: "/addFavorite",
+    component: AddFavorite,
+    displayInSidebar: false,
+  },
+  {
+    layout: '/admin',
+    name: "Edit Favorite",
     path: "/editFavorite/:id",
     component: EditFavorite,
     displayInSidebar: false,
@@ -221,6 +295,11 @@ const routes = [
     path: "/addFavorite",
     component: AddFavorite,
     displayInSidebar: false,
+  }, {
+    layout: '/admin',
+    name: "Delete Favorite",
+    path: "/deleteFavorite",
+    component: DeleteFavorite,
   },
 
 ];

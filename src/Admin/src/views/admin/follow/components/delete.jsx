@@ -1,6 +1,6 @@
 import React from "react";
 
-const DeleteGenre = ({ isOpen, onClose, onDelete }) => {
+const DeleteFollow = ({ isOpen, onClose, onDelete }) => {
   if (!isOpen) return null;
 
   return (
@@ -8,7 +8,7 @@ const DeleteGenre = ({ isOpen, onClose, onDelete }) => {
       <div className="bg-white rounded-lg shadow-lg p-6 w-80">
         <h3 className="text-lg font-semibold mb-4">Confirm Delete</h3>
         <p className="text-gray-700 mb-4">
-          Are you sure you want to delete this genre?
+          Are you sure you want to delete this follow?
         </p>
         <div className="flex justify-end gap-4">
           <button
@@ -32,4 +32,4 @@ const DeleteGenre = ({ isOpen, onClose, onDelete }) => {
   );
 };
 
-export default DeleteGenre;
+export default DeleteFollow;
