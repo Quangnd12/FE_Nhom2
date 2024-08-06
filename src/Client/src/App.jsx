@@ -5,12 +5,15 @@ import HomePage from './pages/homepage/HomePage';
 import Header from './components/header/Header';
 import SearchPage from './pages/searchpage/SearchPage';
 import Artist from './pages/artist/Artist';
+import Album from './pages/album/Albums';
 import Login from './pages/auth/login';
 import Register from './pages/auth/register';
 import ForgotPass from './pages/auth/forgotPass';
 import Track from './pages/track/Track';
 import Content from './pages/content/Content';
 import InfoClient from './pages/info-client/Info-client';
+
+
 
 
 function Client() {
@@ -31,6 +34,7 @@ function Client() {
                 <Route path="/" exact component={HomePage} />
                 <Route path="/search" component={SearchPage} />
                 <Route path="/artist" component={Artist} />
+                <Route path="/album" component={Album} />
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
                 <Route path="/forgot" component={ForgotPass} />

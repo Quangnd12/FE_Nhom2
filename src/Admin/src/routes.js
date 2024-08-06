@@ -12,7 +12,7 @@ import EditSong from "./views/admin/song/components/edit";
 import Genre, { AddGenre, EditGenre, DeleteGenre } from "./views/admin/genre";
 import Album, {AddAlbum, EditAlbum, DeleteAlbum} from "./views/admin/albums";
 import Artist, {AddArtist, EditArtist, DeleteArtist} from "./views/admin/artist";
-
+import Album_song, {AddAlbumSong, EditAlbumSong, DeleteAlbumSong} from "./views/admin/albums_song";
 
 
 
@@ -51,6 +51,34 @@ const routes = [
     name: "Edit Song",
     path: "/editSong",
     component: EditSong,
+    displayInSidebar: false,
+  },
+  {
+    name: "Album_song",
+    layout: "/admin",
+    path: "/album_song",
+    icon: (<Icon as={MdMusicNote} width='20px' height='20px' color='inherit' />),
+    component: Album_song,
+  },
+  {
+    layout: '/admin',
+    name: "Add Album_Song",
+    path: "/addAlbumSong",
+    component: AddAlbumSong,
+    displayInSidebar: false,
+  },
+  {
+    layout: '/admin',
+    name: "Edit Album_Song",
+    path: "/editAlbumSong/:id",
+    component: EditAlbumSong,
+    displayInSidebar: false,
+  },
+  {
+    layout: '/admin',
+    name: "Delete Album_Song",
+    path: "/deleteAlbumSong",
+    component: DeleteAlbumSong,
     displayInSidebar: false,
   },
   {
