@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Box, Flex, Icon, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Text, useColorModeValue } from '@chakra-ui/react';
 import { MdPlayArrow, MdPause } from 'react-icons/md';
 
-const AudioPlayer = ({ audioUrl }) => {
+const AudioPlayer = ({ audioUrl, onDurationChange }) => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -19,6 +19,9 @@ const AudioPlayer = ({ audioUrl }) => {
 
       audioElement.addEventListener('loadedmetadata', () => {
         setDuration(audioElement.duration);
+        if (onDurationChange) {
+          onDurationChange(audioElement.duration);
+        }
       });
 
       audioElement.addEventListener('timeupdate', () => {
