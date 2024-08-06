@@ -17,17 +17,7 @@ import Artist from "./views/admin/artist";
 import AddArtist from "./views/admin/artist/components/add";
 import EditArtist from "./views/admin/artist/components/edit";
 
-
-
-
-
-// Auth Imports
-// import SignInCentered from "./views/auth/signIn";
-import Playlist from "./views/admin/playlist";
-import EditPlaylist from "./views/admin/playlist/components/edit";
-import AddPlaylist from "./views/admin/playlist/components/add";
-import DeletePlaylist from "./views/admin/playlist/components/delete";
-
+import Playlist, { AddPlaylist, EditPlaylist, DeletePlaylist } from "./views/admin/playlist";
 const routes = [
   {
     name: "Dashboard",
@@ -116,8 +106,7 @@ const routes = [
   {
     name: "Playlist",
     layout: "/admin",
-    path: "/EditPlaylist",
-    icon: <Icon as={MdPlaylistPlay} width='20px' height='20px' color='inherit' />,
+    path: "/editPlaylist/:id",
     component: EditPlaylist,
     displayInSidebar: false,
   },

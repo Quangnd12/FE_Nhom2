@@ -9,6 +9,10 @@ import React, { useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import routes from '../../routes';
 
+// Toastify imports
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 // Custom Chakra theme
 export default function Dashboard(props) {
 	const { ...rest } = props;
@@ -147,6 +151,7 @@ export default function Dashboard(props) {
 						<Box>
 							<Footer />
 						</Box>
+						<ToastContainer />
 					</Box>
 				</SidebarContext.Provider>
 			</Box>

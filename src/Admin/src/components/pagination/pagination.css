@@ -1,0 +1,46 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  position: relative;
+  margin-top: 15px;
+  perspective: 1000px; /* Thêm hiệu ứng 3D */
+}
+
+.pagination li {
+  display: inline;
+  margin: 0 5px;
+  transform-style: preserve-3d; /* Thêm hiệu ứng 3D */
+}
+
+.pagination li a {
+  color: #007bff;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  background-color: white;
+  position: relative;
+  transform: translateZ(0); /* Thêm hiệu ứng 3D */
+  transition: transform 0.2s ease-in-out; /* Thêm hiệu ứng chuyển đổi */
+}
+
+.pagination li.active a {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+  transform: scale(1.1) translateZ(10px); /* Thêm hiệu ứng 3D */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Thêm bóng */
+}
+
+.pagination li.disabled a {
+  color: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.5; /* Thêm hiệu ứng mờ */
+}
+
+.pagination li:hover a {
+  transform: scale(1.1) translateZ(5px); /* Thêm hiệu ứng 3D */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Thêm bóng */
+}

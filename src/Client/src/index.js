@@ -13,6 +13,7 @@ root.render(
     <StateProvider initialState={initialState} reducer={reducer}>
       <Router>
         <Client />
+      
       </Router>
     </StateProvider>
   </React.StrictMode>
