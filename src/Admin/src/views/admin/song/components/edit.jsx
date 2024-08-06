@@ -113,17 +113,7 @@ const EditSong = () => {
                       <small className="text-red-500">{formState.errors.title.message}</small>
                     )}
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 text-left">Duration</label>
-                    <input
-                      type="text" name="duration_ms"
-                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
-                      {...register("duration_ms", { required: "Duration is required" })}
-                    />
-                    {formState.errors.duration_ms && (
-                      <small className="text-red-500">{formState.errors.duration_ms.message}</small>
-                    )}
-                  </div>
+                 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 text-left">Artist</label>
                     <select name="artist_id"

@@ -13,6 +13,7 @@ function ListSong() {
     const [song, setSong] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
     const [currentAudioUrl, setCurrentAudioUrl] = useState(null);
+    const [currentDuration, setCurrentDuration] = useState(0);
     const [songIdToDelete, setSongIdToDelete] = useState(null);
     const path="uploads";
 
@@ -53,7 +54,11 @@ function ListSong() {
         }
     };
 
-
+    const formatDuration = (duration) => {
+        const minutes = Math.floor(duration / 60);
+        const seconds = Math.floor(duration % 60);
+        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    };
     const textColor = useColorModeValue("navy.700", "white");
 
 
@@ -118,7 +123,7 @@ function ListSong() {
                                         />
 
                                     </Td>
-                                    <Td>{value?.duration_ms}</Td>
+                                    <Td>{currentAudioUrl === `${BASE_URL}/${path}/${value?.audio_file}` ? formatDuration(currentDuration) : '-'}</Td>
                                     <Td>{value?.artist_name}</Td>
                                     <Td>{value?.album_title}</Td>
                                     <Td>
@@ -139,7 +144,7 @@ function ListSong() {
                         </Tbody>
                     </Table>
                 </Box>
-                {currentAudioUrl && <AudioPlayer audioUrl={currentAudioUrl} />}
+                {currentAudioUrl && <AudioPlayer audioUrl={currentAudioUrl} onDurationChange={setCurrentDuration} />}
             </Flex>
         </>
     );
