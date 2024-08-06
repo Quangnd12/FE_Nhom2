@@ -12,6 +12,10 @@ import Track from "./pages/track/Track";
 import Content from "./pages/content/Content";
 import InfoClient from "./pages/info-client/Info-client";
 import './App.css';
+import Album from './pages/album/Albums';
+
+
+
 
 function Client() {
   return (
