@@ -1,40 +1,42 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import PlayerControls from "../../components/audio/PlayerControls";
+import { Song } from "../../../../Admin/src/services/song";
 
 export default function CurrentTrack() {
   const [currentPlaying, setCurrentPlaying] = useState(null);
 
+  const api="http://localhost:4000/uploads/1722941209720.jpg";
   useEffect(() => {
-    // Simulate fetching current playing track
-    const fetchCurrentTrack = () => {
-      // Hardcoded track data
-      const track = {
-        id: "1",
-        name: "Đi Về Nhà",
-        artists: ["Đen", "JustaTee"],
-        image: "https://i.scdn.co/image/ab67616d000048512a8efe3bfa6a605fcf863237",
-      };
-      setCurrentPlaying(track);
+    const initData = async () => {
+      const result = await Song();
+      console.log(result);
+      setCurrentPlaying(result);
     };
 
-    fetchCurrentTrack();
+    initData();
   }, []);
+
+  
 
   return (
     <Container>
-      {currentPlaying && (
+      {/* {currentPlaying && ( */}
         <div className="track">
           <div className="track__image">
-            <img src={currentPlaying.image} alt="currentPlaying" />
+            <img src={`${api}`} alt="currentPlaying" />
           </div>
           <div className="track__info">
-            <h4 className="track__info__track__name">{currentPlaying.name}</h4>
+            <h4 className="track__info__track__name">{'nhi'}</h4>
             <h6 className="track__info__track__artists">
-              {currentPlaying.artists.join(", ")}
+              {'artist'}
             </h6>
           </div>
         </div>
-      )}
+      {/* )} */}
+      {/* {currentPlaying && (
+        <PlayerControls audioUrl={`${api}/${currentPlaying.audio_file}`} />
+      )} */}
     </Container>
   );
 }
@@ -43,12 +45,13 @@ const Container = styled.div`
   .track {
     display: flex;
     align-items: center;
+   
     gap: 1rem;
     &__image {
       img {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
+        width: 70px;
+        height: 70px;
+        border-radius: 5px;
       }
     }
     &__info {
