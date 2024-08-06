@@ -1,7 +1,6 @@
-// DeleteAlbum.js
 import React from 'react';
 
-const DeleteAlbum = ({ isOpen, onClose }) => {
+const DeleteAlbum = ({ isOpen, onClose, onDelete }) => {
   if (!isOpen) return null;
 
   return (
@@ -18,8 +17,8 @@ const DeleteAlbum = ({ isOpen, onClose }) => {
           </button>
           <button
             onClick={() => {
-              // Add the deletion logic here
-              onClose();
+              onDelete(); // Call the delete function when user confirms
+              onClose(); // Close the modal after deletion
             }}
             className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
           >

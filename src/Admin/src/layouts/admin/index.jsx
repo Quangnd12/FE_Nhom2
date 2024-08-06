@@ -8,8 +8,6 @@ import { SidebarContext } from '../../contexts/SidebarContext';
 import React, { useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import routes from '../../routes';
-
-// Toastify imports
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -151,7 +149,7 @@ export default function Dashboard(props) {
 						<Box>
 							<Footer />
 						</Box>
-						<ToastContainer />
+						<ToastContainer/> 
 					</Box>
 				</SidebarContext.Provider>
 			</Box>
