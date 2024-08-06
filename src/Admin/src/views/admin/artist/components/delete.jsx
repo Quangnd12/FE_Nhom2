@@ -1,7 +1,7 @@
 // DeleteArtist.js
 import React from 'react';
 
-const DeleteArtist = ({ isOpen, onClose }) => {
+const DeleteArtist = ({ isOpen, onClose, onDelete }) => {
   if (!isOpen) return null;
 
   return (
@@ -18,8 +18,8 @@ const DeleteArtist = ({ isOpen, onClose }) => {
           </button>
           <button
             onClick={() => {
-              // Add the deletion logic here
-              onClose();
+              onDelete(); // Gọi hàm xóa khi người dùng xác nhận
+              onClose(); // Đóng modal sau khi xóa
             }}
             className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
           >

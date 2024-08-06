@@ -8,6 +8,8 @@ import { SidebarContext } from '../../contexts/SidebarContext';
 import React, { useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import routes from '../../routes';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Custom Chakra theme
 export default function Dashboard(props) {
@@ -147,6 +149,7 @@ export default function Dashboard(props) {
 						<Box>
 							<Footer />
 						</Box>
+						<ToastContainer/> 
 					</Box>
 				</SidebarContext.Provider>
 			</Box>

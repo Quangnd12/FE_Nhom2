@@ -10,12 +10,8 @@ import Profile from "./views/admin/profile";
 import AddSong from "./views/admin/song/components/add";
 import EditSong from "./views/admin/song/components/edit";
 import Genre, { AddGenre, EditGenre, DeleteGenre } from "./views/admin/genre";
-import Albums from "./views/admin/albums";
-import AddAlbum from "./views/admin/albums/components/add";
-import EditAlbum from "./views/admin/albums/components/edit";
-import Artist from "./views/admin/artist";
-import AddArtist from "./views/admin/artist/components/add";
-import EditArtist from "./views/admin/artist/components/edit";
+import Album, {AddAlbum, EditAlbum, DeleteAlbum} from "./views/admin/albums";
+import Artist, {AddArtist, EditArtist, DeleteArtist} from "./views/admin/artist";
 
 
 
@@ -74,8 +70,15 @@ const routes = [
   {
     layout: '/admin',
     name: "Edit Artist",
-    path: "/editArtist",
+    path: "/editArtist/:id",
     component: EditArtist,
+    displayInSidebar: false,
+  },
+  {
+    layout: '/admin',
+    name: "Delete Artist",
+    path: "/deleteArtist",
+    component: DeleteAlbum,
     displayInSidebar: false,
   },
   {
@@ -90,7 +93,7 @@ const routes = [
     layout: "/admin",
     path: "/albums",
     icon: <Icon as={MdLibraryMusic} width='20px' height='20px' color='inherit' />,
-    component: Albums,
+    component: Album,
   },
   {
     layout: '/admin',
@@ -102,8 +105,15 @@ const routes = [
   {
     layout: '/admin',
     name: "Edit Albums",
-    path: "/editAlbums",
+    path: "/editAlbums/:id",
     component: EditAlbum,
+    displayInSidebar: false,
+  },
+  {
+    layout: '/admin',
+    name: "Delete Alumbs",
+    path: "/deleteAlbums",
+    component: DeleteAlbum,
     displayInSidebar: false,
   },
   {

@@ -1,148 +1,163 @@
-import { Box, Button, Flex, Table, Tbody, Td, Text, Th, Thead, Tr, useColorModeValue, Icon } from "@chakra-ui/react";
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useCallback, useEffect } from "react";
+import {
+  Box,
+  Button,
+  Flex,
+  Table,
+  Tbody,
+  Td,
+  Text,
+  Th,
+  Thead,
+  Tr,
+  useColorModeValue,
+  Icon,
+} from "@chakra-ui/react";
 import { Link } from 'react-router-dom';
-import { MdEdit, MdDelete, MdAdd } from "react-icons/md";
+import { MdAdd, MdEdit, MdDelete } from "react-icons/md";
 import { useGlobalFilter, usePagination, useSortBy, useTable } from "react-table";
+import DeleteArtist from "./delete"; // Assume you have this component similar to DeleteGenre
+import { tableColumnsArtists } from "../variables/tableColumnsTopCreators";
+import { Artists, deleteArtist } from "Admin/src/services/artists";
+import { toast } from 'react-toastify';
+import Pagination from "Admin/src/components/pagination/Pagination"; // Assume you have a Pagination component
 
-import '../css/artist.css';
-import DeleteArtist from "./delete";
+function ListArtist() {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+  const [artists, setArtists] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [resetPagination, setResetPagination] = useState(false);
+  const itemsPerPage = 10;
 
-function ListArtist(props) {
+  useEffect(() => {
+    initData();
+  }, [currentPage]);
 
-    const [isModalOpen, setModalOpen] = useState(false);
+  const initData = async () => {
+    const result = await Artists();
+    const artistsWithIndex = result.map((artist, index) => ({
+      ...artist,
+      no: index + 1,
+    }));
+    setArtists(artistsWithIndex);
+  };
 
-    const handleOpenModal = () => setModalOpen(true);
-    const handleCloseModal = () => setModalOpen(false);
+  const handleOpenModal = useCallback((id) => {
+    setSelectedId(id);
+    setModalOpen(true);
+  }, []);
 
-    const { columnsData, tableData } = props;
+  const handleCloseModal = useCallback(() => {
+    setSelectedId(null);
+    setModalOpen(false);
+  }, []);
 
-    const columns = useMemo(() => columnsData, [columnsData]);
-    const data = useMemo(() => tableData, [tableData]);
+  const handleDelete = useCallback(async (id) => {
+    try {
+      await deleteArtist(id);
+      toast.success("Deleted successfully");
+      setCurrentPage(1);
+      setResetPagination(true);
+      initData();
+    } catch (error) {
+      toast.error("Failed to delete artist");
+    }
+    handleCloseModal();
+  }, [handleCloseModal]);
 
-    const tableInstance = useTable(
-        {
-            columns,
-            data,
-        },
-        useGlobalFilter,
-        useSortBy,
-        usePagination
-    );
+  const columns = useMemo(() => tableColumnsArtists(handleOpenModal) || [], [handleOpenModal]);
+  const data = useMemo(() => artists.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage) || [], [artists, currentPage]);
 
-    const { prepareRow } = tableInstance;
+  const tableInstance = useTable(
+    {
+      columns,
+      data,
+    },
+    useGlobalFilter,
+    useSortBy,
+    usePagination
+  );
 
-    const textColor = useColorModeValue("navy.700", "white");
-    const textColorSecondary = useColorModeValue("secondaryGray.600", "white");
+  const { getTableProps, getTableBodyProps, headerGroups, page, prepareRow } = tableInstance;
 
-    return (
-        <>
-            <Flex
-                direction='column'
-                w='100%'
-                overflowX={{ sm: "scroll", lg: "hidden" }}>
-                <Flex
-                    align={{ sm: "flex-start", lg: "center" }}
-                    justify='space-between'
-                    w='100%'
-                    px='22px'
-                    pb='20px'
-                    mb='10px'
-                    boxShadow='0px 40px 58px -20px rgba(112, 144, 176, 0.26)'>
-                    <Text color={textColor} fontSize='xl' fontWeight='600'>
-                        List artist
-                    </Text>
+  const textColor = useColorModeValue("navy.700", "white");
 
-                    <Link to='/admin/addArtist'>
-                        <Button
-                            variant='action'
-                            display='flex'
-                            alignItems='center'
-                            justifyContent='center'
-                            backgroundColor='#1ed760'
-                            color='black'
-                            _hover={{ backgroundColor: '#1dcf6b' }}
-                        >
-                            <Icon as={MdAdd} width='20px' height='20px' color='inherit' />
-                        </Button>
-                    </Link>
+  const totalPages = Math.ceil(artists.length / itemsPerPage);
 
-                </Flex>
+  return (
+    <>
+      <Flex
+        direction="column"
+        w="100%"
+        overflowX={{ sm: "scroll", lg: "hidden" }}
+      >
+        <Flex
+          align={{ sm: "flex-start", lg: "center" }}
+          justify="space-between"
+          w="100%"
+          px="22px"
+          pb="20px"
+          mb="10px"
+          boxShadow="0px 40px 58px -20px rgba(112, 144, 176, 0.26)"
+        >
+          <Text color={textColor} fontSize="xl" fontWeight="600">
+            List of Artists
+          </Text>
 
-                <Box overflowX="auto">
-                    <Table variant="simple" color="gray.500">
-                        <Thead>
-                            <Tr>
-                                <Th>No</Th>
-                                <Th>Artist</Th>
-                                <Th>Gener</Th>
-                                <Th>Personal_Info</Th>
-                                <Th>Skill</Th>
-                                <Th>Musical_Instrument</Th>
-                                <Th>Vocal_Ability</Th>
-                                <Th>Action</Th>
-                               
-                            </Tr>
-                        </Thead>
-                        <Tbody>
-                            <Tr className={`row-${1 % 2}`}>
-                                <Td>1</Td>
-                                <Td>Sơn Tùng MTP</Td>
-                                <Td>vietnam pop</Td>
-                                <Td>Ca sĩ</Td>
-                                <Td>Sáng tác</Td>
-                                <Td>xuất sắc</Td>
-                                <Td>Piano</Td>
-                                
-                                <Td>
-                                    <Link to='/admin/editArtist' className='text-blue-600 hover:text-blue-800'><Icon as={MdEdit} width='20px' height='20px' color='inherit' mr='20px' /></Link>
-                                    <button onClick={handleOpenModal} className="text-red-600 hover:text-red-800">
-                                        <Icon as={MdDelete} width='20px' height='20px' color='inherit' mr='20px' />
-                                    </button>
-                                    <DeleteArtist isOpen={isModalOpen} onClose={handleCloseModal} />
-                                </Td>
-                            </Tr>
-                            <Tr className={`row-${2 % 2}`}>
-                                <Td>2</Td>
-                                <Td>Sơn Tùng MTP</Td>
-                                <Td>vietnam pop</Td>
-                                <Td>Ca sĩ</Td>
-                                <Td>Sáng tác</Td>
-                                <Td>xuất sắc</Td>
-                                <Td>Piano</Td>
-                                
-                                <Td>
-                                    <Link to='/admin/editArtist' className='text-blue-600 hover:text-blue-800'><Icon as={MdEdit} width='20px' height='20px' color='inherit' mr='20px' /></Link>
-                                    <button onClick={handleOpenModal} className="text-red-600 hover:text-red-800">
-                                        <Icon as={MdDelete} width='20px' height='20px' color='inherit' mr='20px' />
-                                    </button>
-                                    <DeleteArtist isOpen={isModalOpen} onClose={handleCloseModal} />
-                                </Td>
-                            </Tr>
-                            <Tr className={`row-${1 % 2}`}>
-                                <Td>3</Td>
-                                <Td>Sơn Tùng MTP</Td>
-                                <Td>vietnam pop</Td>
-                                <Td>Ca sĩ</Td>
-                                <Td>Sáng tác</Td>
-                                <Td>xuất sắc</Td>
-                                <Td>Piano</Td>
-                                
-                                <Td>
-                                    <Link to='/admin/editArtist' className='text-blue-600 hover:text-blue-800'><Icon as={MdEdit} width='20px' height='20px' color='inherit' mr='20px' /></Link>
-                                    <button onClick={handleOpenModal} className="text-red-600 hover:text-red-800">
-                                        <Icon as={MdDelete} width='20px' height='20px' color='inherit' mr='20px' />
-                                    </button>
-                                    <DeleteArtist isOpen={isModalOpen} onClose={handleCloseModal} />
-                                </Td>
-                            </Tr>
-                           
-                           
-                        </Tbody>
-                    </Table>
-                </Box>
-            </Flex>
-        </>
-    );
+          <Link to='/admin/addArtist'>
+            <Button
+              variant="action"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              backgroundColor="#1ed760"
+              color="black"
+              _hover={{ backgroundColor: "#1dcf6b" }}
+            >
+              <Icon as={MdAdd} width="20px" height="20px" color="inherit" />
+            </Button>
+          </Link>
+        </Flex>
+        <Box overflow="auto">
+          <Table {...getTableProps()} variant="simple" color="gray.500">
+            <Thead>
+              {headerGroups.map((headerGroup) => (
+                <Tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
+                  {headerGroup.headers.map((column) => (
+                    <Th {...column.getHeaderProps(column.getSortByToggleProps())} key={column.id}>
+                      {column.render("Header")}
+                    </Th>
+                  ))}
+                </Tr>
+              ))}
+            </Thead>
+            <Tbody {...getTableBodyProps()}>
+              {page.map((row, i) => {
+                prepareRow(row);
+                return (
+                  <Tr {...row.getRowProps()} key={row.id} className={`row-${i % 2}`}>
+                    {row.cells.map((cell) => (
+                      <Td {...cell.getCellProps()} key={cell.column.id}>
+                        {cell.render("Cell")}
+                      </Td>
+                    ))}
+                  </Tr>
+                );
+              })}
+            </Tbody>
+          </Table>
+        </Box>
+      </Flex>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+        resetPagination={resetPagination}
+      />
+      <DeleteArtist isOpen={isModalOpen} onClose={handleCloseModal} onDelete={() => handleDelete(selectedId)} />
+    </>
+  );
 }
 
 export default ListArtist;
