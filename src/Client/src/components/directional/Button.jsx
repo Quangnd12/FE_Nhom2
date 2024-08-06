@@ -1,16 +1,23 @@
-import React from 'react';
+// src/directional/Button.jsx
+import React from "react";
 
-const DirectionalButton = ({ direction }) => {
-  return (
+const NavButton = ({ onClick, disabled, title, icon: Icon }) => (
+  <div className="relative group">
     <button
-      className="bg-black text-white font-bold py-2 px-4 rounded-full relative group"
+      className={`rounded-full p-2 transition-colors duration-200 ${
+        disabled
+          ? "bg-gray-800 text-gray-600 cursor-not-allowed"
+          : "bg-gray-800 text-gray-400 hover:text-white cursor-pointer"
+      }`}
+      onClick={onClick}
+      disabled={disabled}
     >
-      {direction === 'back' ? '<' : '>'}
-      <span className="absolute top-full mb-2 hidden group-hover:block bg-gray-700 text-white text-xs rounded py-2 px-4 whitespace-nowrap">
-        {direction === 'back' ? 'Quay lại' : 'Tiếp theo'}
-      </span>
+      <Icon fontSize="small" />
     </button>
-  );
-};
+    <span className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 hidden group-hover:block bg-gray-700 text-white text-xs rounded py-1 px-2 whitespace-nowrap">
+      {title}
+    </span>
+  </div>
+);
 
-export default DirectionalButton;
+export default NavButton;

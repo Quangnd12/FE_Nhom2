@@ -12,9 +12,8 @@ import Track from "./pages/track/Track";
 import Content from "./pages/content/Content";
 import InfoClient from "./pages/info-client/Info-client";
 import './App.css';
-import Album from './pages/album/Albums';
-
-
+import GenrePage from './pages/genre/Genre';
+import Album from "./pages/album/Albums";
 
 
 function Client() {
@@ -36,6 +35,8 @@ function Client() {
                 <Route path="/search" component={SearchPage} />
                 <Route path="/artist/:id" component={Artist} />
                 <Route path="/album/:id" component={Album} />
+                <Route path="/genre/:name" component={GenrePage} />
+                <Route path="/artist" component={Artist} />
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
                 <Route path="/forgot" component={ForgotPass} />
