@@ -31,52 +31,17 @@ function Client() {
             style={{ background: "linear-gradient(to bottom, #888888, #000000 95%)", height: "620px" }}
           >
             <Switch>
-              <Route
-                path="/"
-                exact
-                component={HomePage}
-              />
-              <Route
-                path="/search"
-                component={SearchPage}
-              />
-              <Route
-                path="/artist"
-                component={Artist}
-              />
-              <Route
-                path="/login"
-                component={Login}
-              />
-              <Route
-                path="/register"
-                component={Register}
-              />
-              <Route
-                path="/forgot"
-                component={ForgotPass}
-              />
-              <Route
-                path="/content"
-                component={Content}
-              />
-              <Route
-                path="/info"
-                component={InfoClient}
-              />
-              <Route
-                path="/track"
-                component={Track}
-              />
-              <Route path="/" exact component={HomePage} />
-              <Route path="/search" component={SearchPage} />
               <Route path="/artist" component={Artist} />
-              <Route path="/login" component={Login} />
-              <Route path="/register" component={Register} />
-              <Route path="/forgot" component={ForgotPass} />
-              <Route path="/content" component={Content} />
-              <Route path="/info" component={InfoClient} />
-              <Route path="/track" component={Track} />
+                <Route path="/" exact component={HomePage} />
+                <Route path="/search" component={SearchPage} />
+                <Route path="/artist/:id" component={Artist} />
+                <Route path="/album/:id" component={Album} />
+                <Route path="/login" component={Login} />
+                <Route path="/register" component={Register} />
+                <Route path="/forgot" component={ForgotPass} />
+                <Route path="/content" component={Content} />
+                <Route path="/info" component={InfoClient} />
+                <Route path="/track" component={Track} />
             </Switch>
           </div>
         </div>
