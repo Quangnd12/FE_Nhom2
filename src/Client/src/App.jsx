@@ -33,8 +33,8 @@ function Client() {
             <Switch>
                 <Route path="/" exact component={HomePage} />
                 <Route path="/search" component={SearchPage} />
-                <Route path="/artist" component={Artist} />
-                <Route path="/album" component={Album} />
+                <Route path="/artist/:id" component={Artist} />
+                <Route path="/album/:id" component={Album} />
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
                 <Route path="/forgot" component={ForgotPass} />

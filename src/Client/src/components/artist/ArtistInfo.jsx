@@ -1,6 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from 'axios';
+import { API_BASE_URL} from '../../../src/config/albumConfig/albumConfig'; // Đảm bảo đường dẫn là chính xác
+
 
 const ArtistInfo = () => {
+  const { id } = useParams();
+  const [artist, setArtist] = useState(null);
+
+  useEffect(() => {
+    const fetchArtist = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/api/artists/${id}`);
+        setArtist(response.data);
+      } catch (error) {
+        console.error('Error fetching artist:', error);
+      }
+    };
+
+    fetchArtist();
+  }, [id]);
+
+  if (!artist) return <div>Loading...</div>;
+
   return (
     <div className="relative h-3/5 z-10 p-4">
       <div className="absolute top-36 left-4 flex items-center space-x-2">
@@ -18,13 +40,13 @@ const ArtistInfo = () => {
             ></path>
           </svg>
         </div>
-        <span className=" relative top-20 left-5 text-white font-semibold">
-          Verified Artist
+        <span className="relative top-20 left-5 text-white font-semibold">
+          {artist.role}
         </span>
         <div className="absolute top-28 left-3 text-white">
-          <h1 className="text-8xl font-bold">SOOBIN</h1>
+          <h1 className="text-8xl font-bold">{artist.name}</h1>
           <p className="text-left text-lg mt-2">
-            1,017,761 monthly listeners
+            1,690,880 monthly listeners
           </p>
         </div>
       </div>

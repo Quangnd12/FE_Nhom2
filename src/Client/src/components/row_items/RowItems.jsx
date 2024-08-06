@@ -2,6 +2,7 @@ import React from "react";
 import CircleCard from "../cards/CircleCard";
 import RoundCard from "../cards/RoundCard";
 import { Link } from "react-router-dom";
+import { UPLOADS_BASE_URL } from "../../config/artistConfig/artistConfig";
 
 const RowItems = ({ title, data }) => {
   return (
@@ -10,27 +11,27 @@ const RowItems = ({ title, data }) => {
         <h2 className="rowItemTitle">{title}</h2>
         <span className="rowItemSubTitle">Show all</span>
       </div>
-      <Link to={"/artist"}>
       <div className="flex justify-between">
-        {data.map(item =>
-          item.title === "Artist" ? (
-            <CircleCard
-              key={item.id}
-              image={item.image}
-              name={item.name}
-              title={item.title}
-            />
+        {data.map((item) =>
+          item.artist_art ? (
+            <Link to={`/artist/${item.id}`} key={item.id}>
+              <CircleCard
+                image={`${UPLOADS_BASE_URL}${item.artist_art}`}
+                name={item.name}
+                title={item.role}
+              />
+            </Link>
           ) : (
-            <RoundCard
-              key={item.id}
-              image={item.image}
-              name={item.name}
-              title={item.title}
-            />
-          ),
+            <Link to={`/artist/${item.id}`} key={item.id}>
+              <RoundCard
+                image={`${UPLOADS_BASE_URL}${item.artist_art}`}
+                name={item.name}
+                title={item.role}
+              />
+            </Link>
+          )
         )}
       </div>
-      </Link>
     </div>
   );
 };
