@@ -43,16 +43,6 @@ const deleteSong = async (id) => {
   return res;
 };
 
-const updateSong = async (id, formData) => {
-  const res = await request({
-    method: "PUT",
-    path: `/api/songs/${id}`,
-    data: formData,
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  });
-  return res;
-};
 
-export { Song, getbyIdSong, addSong, deleteSong, updateSong };
+
+export { Song, addSong, getbyIdSong, editSong, deleteSong }

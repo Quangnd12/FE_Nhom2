@@ -19,8 +19,9 @@ import EditAlbum from "./views/admin/albums/components/edit";
 import Artist from "./views/admin/artist";
 import AddArtist from "./views/admin/artist/components/add";
 import EditArtist from "./views/admin/artist/components/edit";
-
-
+import Favorite from "./views/admin/favorite";
+import AddFavorite from "./views/admin/favorite/components/add";
+import EditFavorite from "./views/admin/favorite/components/edit";
 
 
 
@@ -300,6 +301,7 @@ const routes = [
     name: "Delete Favorite",
     path: "/deleteFavorite",
     component: DeleteFavorite,
+    displayInSidebar: false,
   },
 
 ];

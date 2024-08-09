@@ -1,28 +1,24 @@
-import React from "react";
-import styled from "styled-components";
-import CurrentTrack from "./CurrentTrack";
-import PlayerControls from "./PlayerControls";
-import Volume from "./Volume";
+// import React from "react";
+// import styled from "styled-components";
+// import CurrentTrack from "./CurrentTrack";
 
-export default function Footer() {
-  return (
-    <Container>
-      <CurrentTrack />
-      <PlayerControls />
-      <Volume />
-    </Container>
-  );
-}
+// import PlayerControls from "./PlayerControls";
+// import Volume from "./Volume";
+// export default function Footer() {
+//   return (
+//     <Container>
+//     </Container>
+//   );
+// }
 
-const Container = styled.div`
-  height: 60px; /* Adjust the height as needed */
-  width: 100%;
-  background-color: #181818;
-  border-top: 1px solid #282828;
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  align-items: center;
-  justify-content: center;
-  padding: 0 1rem;
-  position: relative;
-`;
+// const Container = styled.div`
+//   height: 100%;
+//   width: 100%;
+//   background-color: #181818;
+//   border-top: 1px solid #282828;
+//   display: grid;
+//   grid-template-columns: 1fr 2fr 1fr;
+//   align-items: center;
+//   justify-content: center;
+//   padding: 0 1rem;
+// `;
