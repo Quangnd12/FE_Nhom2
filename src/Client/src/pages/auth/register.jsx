@@ -12,17 +12,9 @@ import "./auth.css";
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { translations } = useContext(LanguageContext);
-  const {
-    register,
-    getValues,
-    handleSubmit,
-    setValue,
-    setError,
-    reset,
-    formState,
-  } = useForm();
+  const { register, getValues, handleSubmit, setValue, setError, reset, formState } = useForm();
 
-  const registerSubmit = async (value) => {
+  const registerSubmit = async value => {
     const result = await fetch("http://localhost:4000/api/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -40,9 +32,7 @@ const Register = () => {
         <div className="w-full max-w-md">
           <div className="bg-black shadow-lg rounded-xl p-5">
             <div className="text-center">
-              <h3 className="text-2xl font-bold mb-8 text-white">
-                {translations.register}
-              </h3>
+              <h3 className="text-2xl font-bold mb-8 text-white">{translations.register}</h3>
 
               <div className="relative mb-4">
                 <input
@@ -76,29 +66,27 @@ const Register = () => {
                   {...register("email", {
                     required: {
                       value: true,
-                      message: `${translations.requireEmail}`,
+                      message: translations.requireEmail,
                     },
                     pattern: {
-                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                      message: `${translations.invalidEmail}`,
+                      value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z][a-zA-Z0-9.-]*\.[a-zA-Z]{2,}$/,
+                      message: translations.invalidEmail,
                     },
                     validate: {
-                      length: (value) =>
-                        (value.length >= 20 && value.length <= 55) ||
-                        `${translations.invalidLength}`,
-                      specialChars: (value) =>
-                        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ||
-                        `${translations.invalidChars}`,
-                      domain: (value) =>
-                        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ||
-                        `${translations.invalidDo}`,
+                      length: value => (value.length >= 20 && value.length <= 55) || translations.invalidLength,
+                      domain: value => {
+                        const domain = value.split("@")[1];
+                        return domain && domain.endsWith(".com") ? true : translations.invalidDomain;
+                      },
+                      specialChars: value => {
+                        // Đây là nơi bạn có thể kiểm tra các ký tự đặc biệt nếu cần
+                        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? true : translations.invalidChars;
+                      },
                     },
                   })}
                 />
                 {formState?.errors.email && (
-                  <small className="block text-left text-red-500 mt-1 ml-3">
-                    {formState?.errors.email?.message}
-                  </small>
+                  <small className="block text-left text-red-500 mt-1 ml-3">{formState?.errors.email?.message}</small>
                 )}
               </div>
               <div className="relative mb-4">
@@ -123,9 +111,7 @@ const Register = () => {
                   onClick={togglePasswordVisibility}
                   className="absolute inset-y-0 right-0 flex items-center px-4 text-gray-500"
                 >
-                  <i
-                    className={showPassword ? "fas fa-eye-slash" : "fas fa-eye"}
-                  ></i>
+                  <i className={showPassword ? "fas fa-eye-slash" : "fas fa-eye"}></i>
                 </button>
                 {formState?.errors.password && (
                   <small className="block  text-left text-red-500 mt-1 ml-3">
@@ -142,13 +128,13 @@ const Register = () => {
                   {...register("confirm", {
                     required: {
                       value: true,
-                      message:`${translations.requireCPass}`,
+                      message: `${translations.requireCPass}`,
                     },
                     minLength: {
                       value: 6,
                       message: `${translations.requireCPassLen}`,
                     },
-                    validate: (confirm) => {
+                    validate: confirm => {
                       const password = getValues()?.password;
                       if (confirm === password) {
                         return true;
@@ -159,9 +145,7 @@ const Register = () => {
                   })}
                 />
                 {formState?.errors.confirm && (
-                  <small className="block text-left text-red-500 mt-1 ml-3">
-                    {formState?.errors.confirm?.message}
-                  </small>
+                  <small className="block text-left text-red-500 mt-1 ml-3">{formState?.errors.confirm?.message}</small>
                 )}
               </div>
               <button
@@ -173,43 +157,16 @@ const Register = () => {
               </button>
               <div className="flex items-center my-4">
                 <hr className="flex-1 border-t border-gray-300" />
-                <p className="text-gray-500 font-semibold mx-3 mb-0 text-sm">
-                  OR
-                </p>
+                <p className="text-gray-500 font-semibold mx-3 mb-0 text-sm">OR</p>
                 <hr className="flex-1 border-t border-gray-300" />
               </div>
-
-              <button
-                className="w-full py-2 px-4 bg-black border border-[#6a6a6a]  text-white rounded-3xl shadow-md flex items-center justify-center hover:border-white hover:border-[1px] hover:ring-1 hover:ring-white transition-all"
-                type="submit"
-              >
-                <img
-                  src="assets/images/google.png"
-                  alt="Google"
-                  className="w-5 h-5 mr-2"
-                />
-                <span className="flex-1 text-center">
-                  {translations.Google}
-                </span>
-              </button>
-              <button
-                className="w-full py-2 px-4 bg-black border border-[#6a6a6a]  text-white rounded-3xl shadow-md flex items-center justify-center mt-2 hover:border-white hover:border-[1px] hover:ring-1 hover:ring-white transition-all"
-                type="submit"
-              >
-                <img
-                  src="assets/images/fb.png"
-                  alt="Facebook"
-                  className="w-5 h-5 mr-2"
-                />
-                <span className="flex-1 text-center">
-                  {translations.Facebook}
-                </span>
-              </button>
-
               <div className="text-center mt-8 ">
                 <p className="text-gray-500 font-semibold mx-3 mb-0 text-sm">
                   {translations.have}{" "}
-                  <Link to="/login" className="custom-text no-underline">
+                  <Link
+                    to="/login"
+                    className="custom-text no-underline"
+                  >
                     {" "}
                     {translations.login}
                   </Link>

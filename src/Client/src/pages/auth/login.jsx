@@ -138,7 +138,7 @@ const Login = () => {
                   </small>
                 )}
               </div>
-              <div className="flex items-center justify-between mb-4">
+              {/* <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center">
                   <input
                     type="checkbox"
@@ -171,7 +171,7 @@ const Login = () => {
                 <Link to="/forgot" className="text-[#1db954] hover:underline">
                   {translations.Forgot}
                 </Link>
-              </div>
+              </div> */}
               <button
                 className="w-full py-2 px-4 bg-[#1ed760] font-semibold text-black rounded-3xl shadow-md transform transition-transform duration-300 hover:ring-2 hover:ring-[#1ed760]"
                 type="submit"
@@ -186,8 +186,7 @@ const Login = () => {
                 </p>
                 <hr className="flex-1 border-t border-gray-300" />
               </div>
-
-              <button
+              {/* <button
                 className="w-full py-2 px-4 bg-black border border-[#6a6a6a] text-white rounded-3xl shadow-md flex items-center justify-center hover:border-white hover:border-[1px] hover:ring-1 hover:ring-white transition-all"
                 type="submit"
               >
@@ -199,8 +198,8 @@ const Login = () => {
                 <span className="flex-1 text-center">
                   {translations.Google}
                 </span>
-              </button>
-              <button
+              </button> */}
+              {/* <button
                 className="w-full py-2 px-4 bg-black border border-[#6a6a6a] text-white rounded-3xl shadow-md flex items-center justify-center mt-2 hover:border-white hover:border-[1px] hover:ring-1 hover:ring-white transition-all"
                 type="submit"
               >
@@ -212,8 +211,7 @@ const Login = () => {
                 <span className="flex-1 text-center">
                   {translations.Facebook}
                 </span>
-              </button>
-
+              </button> */}
               <div className="text-center mt-8">
                 <p className="text-gray-500 font-semibold mx-3 mb-0 text-sm">
                   {translations.Dhave}{" "}
