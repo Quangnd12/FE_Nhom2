@@ -1,12 +1,14 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
 import { searchAll } from '../../config/apiConfig';
+import LanguageContext from "../../contexts/LanguageContext";
 
 const SearchInput = () => {
   const [isFocused, setIsFocused] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const { translations } = useContext(LanguageContext);
   const history = useHistory();
 
   const performSearch = useCallback(async () => {
@@ -52,7 +54,7 @@ const SearchInput = () => {
         <FaSearch className="mr-2" />
         <input
           type="text"
-          placeholder="Tìm kiếm..."
+          placeholder={translations.search}
           className={`flex-grow bg-transparent focus:outline-none ${
             isFocused ? 'text-white' : 'text-gray-700'
           }`}

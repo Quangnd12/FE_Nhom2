@@ -1,27 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from 'axios';
-import { API_BASE_URL} from '../../../src/config/albumConfig/albumConfig'; // Đảm bảo đường dẫn là chính xác
-
+import { getArtistsSong, UPLOADS_BASE_URL } from '../../config/apiConfig'; // Đảm bảo đường dẫn là chính xác
 
 const ArtistInfo = () => {
-  const { id } = useParams();
-  const [artist, setArtist] = useState(null);
+  const { id } = useParams(); // Lấy id từ URL
+  const [artistSong, setArtist] = useState(null);
 
   useEffect(() => {
     const fetchArtist = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/api/artists/${id}`);
-        setArtist(response.data);
+        const artistData = await getArtistsSong(); // Lấy tất cả dữ liệu nghệ sĩ
+        const artist = artistData.find((item) => item.artists_id === parseInt(id)); // Tìm nghệ sĩ theo id
+        if (artist) {
+          setArtist(artist); // Cập nhật state với nghệ sĩ phù hợp
+        }
       } catch (error) {
         console.error('Error fetching artist:', error);
       }
     };
 
     fetchArtist();
-  }, [id]);
+  }, [id]); // Thay đổi khi id thay đổi
 
-  if (!artist) return <div>Loading...</div>;
+  if (!artistSong) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="relative h-3/5 z-10 p-4">
@@ -41,10 +44,10 @@ const ArtistInfo = () => {
           </svg>
         </div>
         <span className="relative top-20 left-5 text-white font-semibold">
-          {artist.role}
+          {artistSong.artist_role}
         </span>
         <div className="absolute top-28 left-3 text-white">
-          <h1 className="text-8xl font-bold">{artist.name}</h1>
+          <h1 className="text-7xl font-bold whitespace-nowrap">{artistSong.artist_name}</h1>
           <p className="text-left text-lg mt-2">
             1,690,880 monthly listeners
           </p>

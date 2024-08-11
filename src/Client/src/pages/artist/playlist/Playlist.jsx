@@ -1,7 +1,7 @@
 import React from "react";
 import PlaylistControls from "../../../components/artist/playlist/PlaylistControls";
 import PopularSongs from "../../../components/artist/playlist/PopularSongs";
-import ArtistChoice from "../../../components/artist/playlist/ArtistChoice";
+// import ArtistChoice from "../../../components/artist/playlist/ArtistChoice";
 
 const Playlist = () => {
   return (
@@ -9,7 +9,7 @@ const Playlist = () => {
       <PlaylistControls />
       <div className="grid grid-cols-1 lg:grid-cols-1 gap-8">
         <PopularSongs />
-        <ArtistChoice />
+        {/* <ArtistChoice /> */}
       </div>
     </div>
   );

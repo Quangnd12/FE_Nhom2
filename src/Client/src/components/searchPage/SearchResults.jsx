@@ -16,7 +16,7 @@ const SearchResults = ({ searchResults }) => {
     );
   };
 
-  const { genres, artists, songs, albums, playlists } = searchResults;
+  const { genres, artists, songs, albums, playlists, } = searchResults;
 
   return (
     <div className="space-y-8">

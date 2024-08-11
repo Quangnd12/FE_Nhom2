@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "tailwindcss/tailwind.css";
 import { Link } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import endpoints from "../../../../endpoint/endpoint";
+import LanguageContext from "../../contexts/LanguageContext";
 
 import { useForm } from "react-hook-form";
 
@@ -10,11 +11,19 @@ import "./auth.css";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const { translations } = useContext(LanguageContext);
+  const {
+    register,
+    getValues,
+    handleSubmit,
+    setValue,
+    setError,
+    reset,
+    formState,
+  } = useForm();
 
-  const { register, getValues, handleSubmit, setValue, setError, reset, formState } = useForm();
-
-  const registerSubmit = async value => {
-    const result = await fetch(process.env.REACT_APP_API_URL + "/" + endpoints.users, {
+  const registerSubmit = async (value) => {
+    const result = await fetch("http://localhost:4000/api/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(value),
@@ -31,27 +40,29 @@ const Register = () => {
         <div className="w-full max-w-md">
           <div className="bg-black shadow-lg rounded-xl p-5">
             <div className="text-center">
-              <h3 className="text-2xl font-bold mb-8 text-white">Sign up</h3>
+              <h3 className="text-2xl font-bold mb-8 text-white">
+                {translations.register}
+              </h3>
 
               <div className="relative mb-4">
                 <input
                   type="username"
                   id="username"
                   className="form-input w-full py-2 px-3 border border-[#6a6a6a] border-0.5 rounded-lg bg-black placeholder-gray-500 text-white focus:outline-none focus:border-[#1db954] focus:ring-0 transition-all duration-300"
-                  placeholder="Username"
+                  placeholder={translations.username}
                   {...register("username", {
                     required: {
                       value: true,
-                      message: "Username is required!",
+                      message: `${translations.requireUser}`,
                     },
                     minLength: {
                       value: 3,
-                      message: "Username must be more than 3 characters!",
+                      message: `${translations.requireUserLen}`,
                     },
                   })}
                 />
                 {formState?.errors.username && (
-                  <small className="block text-left block text-left text-red-500 mt-1 ml-3">
+                  <small className="block text-left text-red-500 mt-1 ml-3">
                     {formState?.errors.username?.message}
                   </small>
                 )}
@@ -65,16 +76,27 @@ const Register = () => {
                   {...register("email", {
                     required: {
                       value: true,
-                      message: "Email is required!",
+                      message: `${translations.requireEmail}`,
                     },
                     pattern: {
                       value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                      message: "Invalid email!",
+                      message: `${translations.invalidEmail}`,
+                    },
+                    validate: {
+                      length: (value) =>
+                        (value.length >= 20 && value.length <= 55) ||
+                        `${translations.invalidLength}`,
+                      specialChars: (value) =>
+                        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ||
+                        `${translations.invalidChars}`,
+                      domain: (value) =>
+                        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ||
+                        `${translations.invalidDo}`,
                     },
                   })}
                 />
                 {formState?.errors.email && (
-                  <small className="block text-left block text-left text-red-500 mt-1 ml-3">
+                  <small className="block text-left text-red-500 mt-1 ml-3">
                     {formState?.errors.email?.message}
                   </small>
                 )}
@@ -84,15 +106,15 @@ const Register = () => {
                   type={showPassword ? "text" : "password"}
                   id="password"
                   className="form-input w-full py-2 px-3 border border-[#6a6a6a] border-0.5 rounded-lg bg-black placeholder-gray-500 text-white focus:outline-none focus:border-[#1db954] focus:ring-0 transition-all duration-300"
-                  placeholder="Password"
+                  placeholder={translations.password}
                   {...register("password", {
                     required: {
                       value: true,
-                      message: "Password is required!",
+                      message: `${translations.requirePass}`,
                     },
                     minLength: {
                       value: 6,
-                      message: "Password must be at least 6 characters long!",
+                      message: `${translations.requirePassLen}`,
                     },
                   })}
                 />
@@ -101,10 +123,12 @@ const Register = () => {
                   onClick={togglePasswordVisibility}
                   className="absolute inset-y-0 right-0 flex items-center px-4 text-gray-500"
                 >
-                  <i className={showPassword ? "fas fa-eye-slash" : "fas fa-eye"}></i>
+                  <i
+                    className={showPassword ? "fas fa-eye-slash" : "fas fa-eye"}
+                  ></i>
                 </button>
                 {formState?.errors.password && (
-                  <small className="block text-left block text-left text-red-500 mt-1 ml-3">
+                  <small className="block  text-left text-red-500 mt-1 ml-3">
                     {formState?.errors.password?.message}
                   </small>
                 )}
@@ -114,28 +138,28 @@ const Register = () => {
                   type="password"
                   id="confirm"
                   className="form-input w-full py-2 px-3 border border-[#6a6a6a] border-0.5 rounded-lg bg-black placeholder-gray-500 text-white focus:outline-none focus:border-[#1db954] focus:ring-0 transition-all duration-300"
-                  placeholder="Confirm Password"
+                  placeholder={translations.confirm}
                   {...register("confirm", {
                     required: {
                       value: true,
-                      message: "Confirm is required!",
+                      message:`${translations.requireCPass}`,
                     },
                     minLength: {
                       value: 6,
-                      message: "Confirm password more than 6 characters!",
+                      message: `${translations.requireCPassLen}`,
                     },
-                    validate: confirm => {
+                    validate: (confirm) => {
                       const password = getValues()?.password;
                       if (confirm === password) {
                         return true;
                       } else {
-                        return "Password and confirm password do not match!";
+                        return `${translations.requireCPassMatch}`;
                       }
                     },
                   })}
                 />
                 {formState?.errors.confirm && (
-                  <small className="block text-left block text-left text-red-500 mt-1 ml-3">
+                  <small className="block text-left text-red-500 mt-1 ml-3">
                     {formState?.errors.confirm?.message}
                   </small>
                 )}
@@ -145,11 +169,13 @@ const Register = () => {
                 type="submit"
                 onClick={handleSubmit(registerSubmit)}
               >
-                Sign up
+                {translations.register}
               </button>
               <div className="flex items-center my-4">
                 <hr className="flex-1 border-t border-gray-300" />
-                <p className="text-gray-500 font-semibold mx-3 mb-0 text-sm">OR</p>
+                <p className="text-gray-500 font-semibold mx-3 mb-0 text-sm">
+                  OR
+                </p>
                 <hr className="flex-1 border-t border-gray-300" />
               </div>
 
@@ -162,7 +188,9 @@ const Register = () => {
                   alt="Google"
                   className="w-5 h-5 mr-2"
                 />
-                <span className="flex-1 text-center">Sign up with Google</span>
+                <span className="flex-1 text-center">
+                  {translations.Google}
+                </span>
               </button>
               <button
                 className="w-full py-2 px-4 bg-black border border-[#6a6a6a]  text-white rounded-3xl shadow-md flex items-center justify-center mt-2 hover:border-white hover:border-[1px] hover:ring-1 hover:ring-white transition-all"
@@ -173,18 +201,17 @@ const Register = () => {
                   alt="Facebook"
                   className="w-5 h-5 mr-2"
                 />
-                <span className="flex-1 text-center">Sign up with Facebook</span>
+                <span className="flex-1 text-center">
+                  {translations.Facebook}
+                </span>
               </button>
 
               <div className="text-center mt-8 ">
                 <p className="text-gray-500 font-semibold mx-3 mb-0 text-sm">
-                  Already have an account?{" "}
-                  <Link
-                    to="/login"
-                    className="custom-text no-underline"
-                  >
+                  {translations.have}{" "}
+                  <Link to="/login" className="custom-text no-underline">
                     {" "}
-                    Sign in
+                    {translations.login}
                   </Link>
                 </p>
               </div>

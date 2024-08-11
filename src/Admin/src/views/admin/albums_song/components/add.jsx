@@ -72,10 +72,6 @@ const AddAlbumSong = () => {
         mb="10px"
         boxShadow="0px 40px 58px -20px rgba(112, 144, 176, 0.26)"
       >
-        <Link to="/admin/albums_songs" className="text-blue-600 hover:text-blue-800">
-          <Icon as={MdArrowBack} width="20px" height="20px" />
-          <span>Back to Album Songs</span>
-        </Link>
       </Flex>
 
       <Box overflowX="auto" p="22px">

@@ -3,16 +3,13 @@ import { AiFillClockCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { Song } from "../../../../Admin/src/services/song";
 import PlayerControls from "../../components/audio/PlayerControls";
-import './track.css';
+import "./track.css";
 import { Durations } from "Client/src/components/audio/duration";
 
 export default function Body({ headerBackground }) {
   const [songs, setSongs] = useState([]);
   const [selectedPlaylist, setSelectedPlaylist] = useState({
-    title: "Playlist Name",
-    description: "Playlist Description",
-    image: "http://localhost:4000/uploads/1722844320307.jpg",
-    tracks: []
+
   });
   const [trackDurations, setTrackDurations] = useState({});
   const [currentTrack, setCurrentTrack] = useState(null);
@@ -20,7 +17,6 @@ export default function Body({ headerBackground }) {
   const api = "http://localhost:4000/uploads/";
 
   useEffect(() => {
-
     initData();
   }, []);
 
@@ -37,6 +33,27 @@ export default function Body({ headerBackground }) {
     setCurrentTrack(track);
   };
 
+  const playRandomTrack = () => {
+    if (songs.length > 0) {
+      const randomIndex = Math.floor(Math.random() * songs.length);
+      setCurrentTrack(songs[randomIndex]);
+    }
+  };
+
+  const changeTrack = (type) => {
+    const currentIndex = songs.findIndex(song => song.id === currentTrack?.id);
+    if (currentIndex === -1) return;
+
+    let newIndex = currentIndex;
+    if (type === "next") {
+      newIndex = (currentIndex + 1) % songs.length;
+    } else if (type === "previous") {
+      newIndex = (currentIndex - 1 + songs.length) % songs.length;
+    }
+
+    setCurrentTrack(songs[newIndex]);
+  };
+
   const msToMinutesAndSeconds = (ms) => {
     const minutes = Math.floor(ms / 60);
     const seconds = Math.floor(ms % 60);
@@ -49,11 +66,11 @@ export default function Body({ headerBackground }) {
         <>
           <div className="playlist">
             <div className="image">
-              <img src={selectedPlaylist.image} alt="selected playlist" />
+              <img src="/assets/img/1722764402302.jpg" alt="selected playlist" />
             </div>
             <div className="details">
               <span className="type">PLAYLIST</span>
-              <h1 className="title">{selectedPlaylist.title}</h1>
+              <h1 className="title">Summer Hits 2024</h1>
               <p className="description">{selectedPlaylist.description}</p>
             </div>
           </div>
@@ -75,7 +92,7 @@ export default function Body({ headerBackground }) {
               </div>
             </div>
             <div className="tracks">
-              {songs.map((song, index) => (
+            {songs.map((song, index) => (
                 <div
                   className="row"
                   key={song.id}
@@ -94,7 +111,9 @@ export default function Body({ headerBackground }) {
                     </div>
                   </div>
                   <div className="col">
-                    <Link to={'/artist'}><span>{song.album_title}</span></Link>
+                    <Link to={"/artist"}>
+                      <span>{song.album_title}</span>
+                    </Link>
                   </div>
                   <div className="col">
                     <span>
@@ -109,8 +128,17 @@ export default function Body({ headerBackground }) {
           </div>
         </>
       )}
-      {currentTrack && (
-        <PlayerControls audioUrl={`${api}${currentTrack.audio_file}`} />
+     {currentTrack && (
+        <PlayerControls
+          audioUrl={`${api}${currentTrack.audio_file}`}
+          onTrackChange={changeTrack}
+          onDurationChange={(duration) => console.log(`Track duration: ${duration}`)}
+          songList={songs}
+          onShuffle={playRandomTrack}
+          title={currentTrack.title}
+          artist_name={currentTrack.artist_name}
+          cover_image={`${api}${currentTrack.cover_image}`}
+        />
       )}
     </div>
   );

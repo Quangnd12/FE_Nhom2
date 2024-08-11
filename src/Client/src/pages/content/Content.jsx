@@ -1,28 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ContentCard from '../../components/cards/Content';
+import { SongNew } from "../../../../Admin/src/services/song"
 
 const Content = () => {
-  // Sample array of items
-  const items = [
-    {
-      img: '/assets/images/anh1.jpg',
-      title: 'Hero',
-      artist: 'Charlie Puth',
-      releaseDate: 'Single - May 24, 2024',
-    },
-    {
-      img: '/assets/images/anh1.jpg',
-      title: 'America',
-      artist: 'Charlie Puth',
-      releaseDate: 'Single - May 24, 2024',
-    },
-    {
-      img: '/assets/images/anh1.jpg',
-      title: 'Success',
-      artist: 'Charlie Puth',
-      releaseDate: 'Single - May 24, 2024',
-    },
-  ];
+  const [songNews, setSongnews] = useState([]);
+
+  useEffect(() => {
+    InitData();
+  }, [])
+
+  const InitData = async () => {
+    try {
+      const result = await SongNew();
+      setSongnews(result);
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className="bg-zinc-800 text-white p-8">
@@ -36,14 +31,14 @@ const Content = () => {
         <button className="bg-gray-800 border border-white text-white px-4 py-2 rounded-full">Podcasts & Shows</button>
       </div>
 
-      {/* Render items */}
-      {items.map((item, index) => (
+      {songNews.map((item, index) => (
         <ContentCard key={index} {...item} />
       ))}
-   
+  
+
     </div>
-    
-    
+
+
   );
 };
 

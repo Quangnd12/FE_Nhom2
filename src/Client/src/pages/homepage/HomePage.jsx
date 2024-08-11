@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import RowItems from "../../components/row_items/RowItems";
 import RowItems1 from "../../components/row_items/RowItems1";
 import Footer from "../../components/footer/Footer";
-import { getArtists } from "../../config/artistConfig";
-import { getAlbums } from "../../config/albumConfig";
+import { getArtists } from "../../config/apiConfig";
+import { getAlbums } from "../../config/apiConfig";
+import LanguageContext from "../../contexts/LanguageContext";
 // Import thêm hàm lấy radio nếu có
 // import { getRadio } from "../../config/radioConfig";
 
@@ -11,6 +12,7 @@ const HomePage = () => {
   const [artists, setArtists] = useState([]);
   const [albums, setAlbums] = useState([]);
   const [radio, setRadio] = useState([]);
+  const { translations } = useContext(LanguageContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,16 +38,15 @@ const HomePage = () => {
   return (
     <div>
       <RowItems
-        title={"Popular artist"}
-        data={artist}
-        type={"Artist"}
+        title={translations.popularArtist}
+        data={artists}
       />
       <RowItems1
-        title={"Popular albums"}
+        title={translations.popularAlbum}
         data={albums}
       />
       <RowItems
-        title={"Popular Radio"}
+        title={translations.popularRadio}
         data={radio}
       />
       <Footer />

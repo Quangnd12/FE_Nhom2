@@ -55,4 +55,13 @@ const updateSong = async (id, formData) => {
   return res;
 };
 
-export { Song, getbyIdSong, addSong, deleteSong, updateSong };
+const SongNew = async () => {
+  const res = await request({
+    method: "GET",
+    path: `/api/song/new`,
+  });
+
+  return res;
+}
+
+export { Song, getbyIdSong, editSong, addSong, deleteSong, updateSong ,SongNew };

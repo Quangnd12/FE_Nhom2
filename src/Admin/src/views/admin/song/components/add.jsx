@@ -10,6 +10,7 @@ import { addSong } from "../../../../services/song";
 import { Genre } from "../../../../services/genre";
 import { Artists } from "../../../../services/artist";
 import { Album } from "../../../../services/album";
+import { toast } from "react-toastify";
 
 function AddSong() {
   const { register, handleSubmit, formState } = useForm();
@@ -31,6 +32,7 @@ function AddSong() {
     setGenres(genre)
   };
 
+  
   const onSubmit = async (data) => {
     const formData = new FormData();
     formData.append('title', data.title);
@@ -43,6 +45,7 @@ function AddSong() {
 
     try {
       await addSong(formData);
+      toast.success("Added successfully");
       history.push("/admin/song");
     } catch (error) {
       alert('Error adding song');
@@ -75,6 +78,7 @@ function AddSong() {
                     <label className="block text-sm font-medium text-gray-700 text-left">Audio</label>
                     <input
                       type="file" name="audio_file"
+                      accept=".mp3,audio/*" 
                       className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
                       {...register("audio_file", { required: "Audio file is required" })}
                     />
@@ -86,6 +90,7 @@ function AddSong() {
                     <label className="block text-sm font-medium text-gray-700 text-left">Image</label>
                     <input
                       type="file" name="cover_image"
+                      accept="image/png, image/jpeg, image/gif"
                       className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
                       {...register("cover_image", { required: "Cover image is required" })}
                     />

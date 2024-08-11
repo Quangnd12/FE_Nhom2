@@ -1,18 +1,18 @@
 import React from "react";
 import { Icon } from "@chakra-ui/react";
-import { MdPlaylistPlay, MdPerson, MdHome, MdCategory, MdLibraryMusic, MdMusicNote, MdMic, MdPersonAdd, MdLyrics, MdFavorite } from "react-icons/md";
+import { MdPlaylistPlay, MdHome, MdCategory, MdLibraryMusic, MdMusicNote, MdMic, MdLyrics } from "react-icons/md";
 
 // Admin Imports
 import MainDashboard from "./views/admin/default";
 import Song from "./views/admin/song";
-import Profile from "./views/admin/profile";
+// import Profile from "./views/admin/profile";
 // import DataTables from "views/admin/dataTables";
 import AddSong from "./views/admin/song/components/add";
 import EditSong from "./views/admin/song/components/edit";
 import Genre, { AddGenre, EditGenre, DeleteGenre } from "./views/admin/genre";
-import Follow, { AddFollow, EditFollow, DeleteFollow } from "./views/admin/follow";
+// import Follow, { AddFollow, EditFollow, DeleteFollow } from "./views/admin/follow";
 import Lyric, { AddLyric, EditLyric, DeleteLyric } from "./views/admin/lyric";
-import Favorite, { AddFavorite, EditFavorite, DeleteFavorite } from "./views/admin/fav";
+// import Favorite, { AddFavorite, EditFavorite, DeleteFavorite } from "./views/admin/fav";
 import Albums, { DeleteAlbum } from "./views/admin/albums";
 import AddAlbum from "./views/admin/albums/components/add";
 import EditAlbum from "./views/admin/albums/components/edit";
@@ -119,13 +119,13 @@ const routes = [
     component: DeleteAlbum,
     displayInSidebar: false,
   },
-  {
-    name: "Profile",
-    layout: "/admin",
-    path: "/profile",
-    icon: <Icon as={MdPerson} width='20px' height='20px' color='inherit' />,
-    component: Profile,
-  },
+  // {
+  //   name: "Profile",
+  //   layout: "/admin",
+  //   path: "/profile",
+  //   icon: <Icon as={MdPerson} width='20px' height='20px' color='inherit' />,
+  //   component: Profile,
+  // },
   {
     name: "Albums",
     layout: "/admin",
@@ -212,34 +212,34 @@ const routes = [
     component: DeleteGenre,
     displayInSidebar: false,
   },
-  {
-    name: "Follow",
-    layout: "/admin",
-    path: "/follow",
-    icon: <Icon as={MdPersonAdd} width='20px' height='20px' color='inherit' />,
-    component: Follow,
-  },
-  {
-    layout: '/admin',
-    name: "Add Follow",
-    path: "/addFollow",
-    component: AddFollow,
-    displayInSidebar: false,
-  },
-  {
-    layout: '/admin',
-    name: "Edit Follow",
-    path: "/editFollow/:id",
-    component: EditFollow,
-    displayInSidebar: false,
-  },
-  {
-    layout: '/admin',
-    name: "Delete Follow",
-    path: "/deleteFollow",
-    component: DeleteFollow,
-    displayInSidebar: false,
-  },
+  // {
+  //   name: "Follow",
+  //   layout: "/admin",
+  //   path: "/follow",
+  //   icon: <Icon as={MdPersonAdd} width='20px' height='20px' color='inherit' />,
+  //   component: Follow,
+  // },
+  // {
+  //   layout: '/admin',
+  //   name: "Add Follow",
+  //   path: "/addFollow",
+  //   component: AddFollow,
+  //   displayInSidebar: false,
+  // },
+  // {
+  //   layout: '/admin',
+  //   name: "Edit Follow",
+  //   path: "/editFollow/:id",
+  //   component: EditFollow,
+  //   displayInSidebar: false,
+  // },
+  // {
+  //   layout: '/admin',
+  //   name: "Delete Follow",
+  //   path: "/deleteFollow",
+  //   component: DeleteFollow,
+  //   displayInSidebar: false,
+  // },
   {
     name: "Lyric",
     layout: "/admin",
@@ -268,39 +268,34 @@ const routes = [
     component: DeleteLyric,
     displayInSidebar: false,
   },
-  {
-    name: "Favorite",
-    layout: "/admin",
-    path: "/favorite",
-    icon: <Icon as={MdFavorite} width='20px' height='20px' color='inherit' />, // Sử dụng icon mới
-    component: Favorite,
-  },
-  {
-    layout: '/admin',
-    name: "Add Favorite",
-    path: "/addFavorite",
-    component: AddFavorite,
-    displayInSidebar: false,
-  },
-  {
-    layout: '/admin',
-    name: "Edit Favorite",
-    path: "/editFavorite/:id",
-    component: EditFavorite,
-    displayInSidebar: false,
-  },
-  {
-    layout: '/admin',
-    name: "Add favorite",
-    path: "/addFavorite",
-    component: AddFavorite,
-    displayInSidebar: false,
-  }, {
-    layout: '/admin',
-    name: "Delete Favorite",
-    path: "/deleteFavorite",
-    component: DeleteFavorite,
-  },
+  // {
+  //   name: "Favorite",
+  //   layout: "/admin",
+  //   path: "/favorite",
+  //   icon: <Icon as={MdFavorite} width='20px' height='20px' color='inherit' />,
+  //   component: Favorite,
+  // },
+  // {
+  //   layout: '/admin',
+  //   name: "Add Favorite",
+  //   path: "/addFavorite",
+  //   component: AddFavorite,
+  //   displayInSidebar: false,
+  // },
+  // {
+  //   layout: '/admin',
+  //   name: "Edit Favorite",
+  //   path: "/editFavorite/:id",
+  //   component: EditFavorite,
+  //   displayInSidebar: false,
+  // },
+  // {
+  //   layout: '/admin',
+  //   name: "Delete Favorite",
+  //   path: "/deleteFavorite",
+  //   component: DeleteFavorite,
+  //   displayInSidebar: false,
+  // },
 
 ];
 

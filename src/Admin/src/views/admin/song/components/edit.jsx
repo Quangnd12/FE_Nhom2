@@ -10,6 +10,7 @@ import { editSong,getbyIdSong } from "../../../../services/song";
 import { Genre } from "../../../../services/genre";
 import { Artists } from "../../../../services/artist";
 import { Album } from "../../../../services/album";
+import { toast } from "react-toastify";
 
 const EditSong = () => {
   const { id } = useParams();
@@ -39,6 +40,8 @@ const EditSong = () => {
     setValue("duration_ms", data.duration_ms);
   };
 
+
+
   const onSubmit = async (data) => {
     const formData = new FormData();
     formData.append('title', data.title);
@@ -53,6 +56,7 @@ const EditSong = () => {
     try {
       await editSong(id, formData);
       console.log(formData);
+      toast.success("Updated successfully");
       history.push("/admin/song");
     } catch (error) {
       console.error(error);
@@ -84,6 +88,7 @@ const EditSong = () => {
                     <label className="block text-sm font-medium text-gray-700 text-left">Audio</label>
                     <input
                       type="file" name="audio_file"
+                      accept=".mp3,audio/*" 
                       className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
                       {...register("audio_file", { required: "Audio file is required" })}
                     />
@@ -95,6 +100,7 @@ const EditSong = () => {
                     <label className="block text-sm font-medium text-gray-700 text-left">Image</label>
                     <input
                       type="file" name="cover_image"
+                      accept="image/png, image/jpeg, image/gif"
                       className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
                       {...register("cover_image", { required: "Cover image is required" })}
                     />

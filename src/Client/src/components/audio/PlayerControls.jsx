@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ReactPlayer from "react-player";
 import styled from "styled-components";
 import { BsFillPlayCircleFill, BsFillPauseCircleFill, BsShuffle } from "react-icons/bs";
@@ -7,20 +7,19 @@ import { FiRepeat } from "react-icons/fi";
 import Volume from "../../pages/track/Volume";
 import CurrentTrack from "../../pages/track/CurrentTrack";
 
-const PlayerControls = ({ audioUrl, onDurationChange }) => {
+const PlayerControls = ({ audioUrl, onTrackChange, onDurationChange, onShuffle, title, artist_name, cover_image }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(0.8);
+  const playerRef = useRef(null);
 
   const handlePlayPause = () => {
-    setIsPlaying(prev => !prev);
+    setIsPlaying((prev) => !prev);
   };
 
   const handleProgress = (state) => {
-    
     setCurrentTime(state.playedSeconds);
-    setDuration(state.loadedSeconds);
     if (onDurationChange) {
       onDurationChange(state.loadedSeconds);
     }
@@ -29,6 +28,22 @@ const PlayerControls = ({ audioUrl, onDurationChange }) => {
   const handleSliderChange = (e) => {
     const newTime = parseFloat(e.target.value);
     setCurrentTime(newTime);
+  };
+
+  const handleSeek = (newTime) => {
+    setCurrentTime(newTime);
+  };
+
+  const handleRepeat = () => {
+    if (playerRef.current) {
+      playerRef.current.seekTo(0, "seconds");
+    }
+  };
+
+  const handleShuffle = () => {
+    if (onShuffle) {
+      onShuffle();
+    }
   };
 
   useEffect(() => {
@@ -42,25 +57,29 @@ const PlayerControls = ({ audioUrl, onDurationChange }) => {
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
   const changeTrack = (type) => {
-    console.log(`Track ${type}`);
+    onTrackChange(type);
   };
 
   return (
     <Container>
       <div className="controls">
-        <CurrentTrack />
+        <CurrentTrack
+          title={title}
+          artist_name={artist_name}
+          cover_image={cover_image}
+        />
         <div className="control-buttons">
-          <BsShuffle className="icon" />
+          <BsShuffle className="icon" onClick={handleShuffle} />
           <CgPlayTrackPrev className="icon" onClick={() => changeTrack("previous")} />
           <div className="state" onClick={handlePlayPause}>
             {isPlaying ? <BsFillPauseCircleFill className="icon" /> : <BsFillPlayCircleFill className="icon" />}
           </div>
           <CgPlayTrackNext className="icon" onClick={() => changeTrack("next")} />
-          <FiRepeat className="icon" />
+          <FiRepeat className="icon" onClick={handleRepeat} />
         </div>
         <Volume volume={volume} onVolumeChange={(e) => setVolume(parseFloat(e.target.value))} />
       </div>
@@ -72,16 +91,19 @@ const PlayerControls = ({ audioUrl, onDurationChange }) => {
           max={duration || 0}
           value={currentTime}
           onChange={handleSliderChange}
-          onMouseUp={() => document.querySelector('audio').currentTime = currentTime} 
-        />
+          onMouseUp={() => document.querySelector('audio').currentTime = currentTime}
+          />
         <span>{formatTime(duration)}</span>
       </ProgressContainer>
       <ReactPlayer
+        ref={playerRef} // Reference to the player
         url={audioUrl}
         playing={isPlaying}
         volume={volume}
         onProgress={handleProgress}
         onDuration={setDuration}
+        onSeek={handleSeek} // Update the time when seeking
+        onEnded={() => changeTrack("next")} // Automatically change to the next track
         width="0"
         height="0"
       />
@@ -172,6 +194,26 @@ const ProgressContainer = styled.div`
     color: white;
     font-size: 0.875rem;
   }
+    /* Thêm lớp CSS cho nút reset */
+.reset-button {
+  background-color: #333; /* Màu nền của nút khi không nhấp */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.reset-button.clicked {
+  background-color: #555; /* Màu nền của nút khi được nhấp */
+}
+
+
+.reset-button:active {
+  background-color: #555; /* Màu nền của nút khi được nhấp */
+}
+
 `;
 
 export default PlayerControls;

@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+const API_BASE_URL = 'http://localhost:4000'; // Địa chỉ của backend
+
 const RecentSearchCard = ({ item, index, handleRemove }) => {
   return (
     <div
@@ -8,21 +10,19 @@ const RecentSearchCard = ({ item, index, handleRemove }) => {
       className="relative flex-shrink-0 text-center group hover:bg-gray-500 px-7 rounded-lg"
     >
       <button
-        className="relative top-5 left-24 bg-gray-950 text-white rounded-full w-8 h-8 m-2"
+        className="absolute top-2 right-2 bg-gray-950 text-white rounded-full w-8 h-8 flex items-center justify-center"
         onClick={() => handleRemove(index)}
       >
         X
       </button>
       <div className="relative">
-        <Link to="/artist">
+        <Link to={`/artist/${item.id}`}>
           <img
-            src={`assets/img/${item.image}`}
+            src={item.artist_art ? `${API_BASE_URL}/uploads/${item.artist_art}` : 'default_image_url'} // Đường dẫn đến hình ảnh từ backend
             alt={item.name}
-            className={`w-44 h-44 mb-2 ${
-              item.role === "Artist" ? "rounded-full" : "rounded-md"
-            }`}
+            className={`w-44 h-44 mb-2 ${item.role === "Artist" ? "rounded-full" : "rounded-md"}`}
           />
-          <div className="absolute bottom-5 left-36 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
             <div className="bg-green-500 p-2 rounded-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -36,8 +36,8 @@ const RecentSearchCard = ({ item, index, handleRemove }) => {
           </div>
         </Link>
       </div>
-      <div className="text-white">{item.name}</div>
-      <div className="text-gray-400 text-sm">{item.role}</div>
+      <div className="text-white mt-2">{item.name}</div> {/* Hiển thị tên */}
+      <div className="text-gray-400 text-sm">{item.role}</div> {/* Hiển thị vai trò */}
     </div>
   );
 };

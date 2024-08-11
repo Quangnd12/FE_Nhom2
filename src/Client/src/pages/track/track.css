@@ -36,9 +36,12 @@
     margin: 1rem 0 0 0;
     color: #dddcdc;
     position: sticky;
-    top: 15vh;
+    top: 12.5vh;
     padding: 1rem 3rem;
     transition: 0.3s ease-in-out;
+    background-image:linear-gradient(to right, rgb(117, 182, 122) , rgb(18, 110, 18));
+    border-radius: 5px;
+    box-shadow: 1px solid ;
   }
   
   .list .tracks {
