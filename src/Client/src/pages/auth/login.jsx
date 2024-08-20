@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "tailwindcss/tailwind.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
@@ -16,6 +16,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const { translations } = useContext(LanguageContext);
+  const history = useHistory();
 
   const {
     register,
@@ -48,6 +49,7 @@ const Login = () => {
       const decodedToken = jwtDecode(result.token);
       dispatch(login(decodedToken));
       alert("Đăng nhập thành công!");
+      history.push("/");
     }
   };
 

@@ -120,7 +120,7 @@ const translations = {
     requirePassLen: "Password must be at least 6 characters long!",
     requireEmail: "Email is required!",
     invalidEmail: "Invalid email!",
-    invalidLength: "Email must be between 5 and 55 characters long.",
+    invalidLength: "Email must be between 20 and 55 characters long.",
     invalidChars: "Email contains invalid characters",
     invalidDo: "Invalid email domain",
     requireCPass: "Confirm is required!",

@@ -76,7 +76,7 @@ const Register = () => {
                       length: value => (value.length >= 20 && value.length <= 55) || translations.invalidLength,
                       domain: value => {
                         const domain = value.split("@")[1];
-                        return domain && domain.endsWith(".com") ? true : translations.invalidDomain;
+                        return domain && domain.endsWith(".com") ? true : translations.invalidDo;
                       },
                       specialChars: value => {
                         // Đây là nơi bạn có thể kiểm tra các ký tự đặc biệt nếu cần

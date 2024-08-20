@@ -19,6 +19,7 @@ const HeaderStateInit = createSelector([user], (user) => ({
 
 const Header = () => {
   const { user } = useSelector(HeaderStateInit);
+  const infor = useSelector((state)=>state.userInformation.userInformation)
   const dispatch = useDispatch();
   const { translations } = useContext(LanguageContext);
   const history = useHistory();
@@ -51,8 +52,8 @@ const Header = () => {
   };
 
   useEffect(() => {
-    console.log("user", user);
-  }, [user]);
+    console.log("infor", infor);
+  }, [infor]);
 
   const handleLogOut = () => {
     localStorage.clear("token");
